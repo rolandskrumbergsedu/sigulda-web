@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $.get("http://localhost:54228/api/amurs", function (amuri, status) {
+    $.get("api/avengers/amurs", function (amuri, status) {
 
         // Izveidot katram objektam jaunu tabulas ierakstu
 
@@ -56,7 +56,7 @@
             "Panema": panemaKaVirkne
         };
 
-        $.post("http://localhost:54228/api/amurs",
+        $.post("api/avengers/amurs",
             amurs,
             function (data, status) {
                 // Izdzēš ievadīto vērtību laukam ar ID "kata_garums"
