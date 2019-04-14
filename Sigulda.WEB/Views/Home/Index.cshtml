@@ -1,0 +1,58 @@
+﻿<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kāta garums</th>
+                <th>Galvas izmērs</th>
+                <th>Īpašās iezīmes</th>
+                <th>Bojāts</th>
+                <th>Paņēma</th>
+            </tr>
+        </thead>
+        <tbody id="amuru_tabula"></tbody>
+    </table>
+
+    <div class="form-group">
+        <select class="form-control" id="amuru_saraksts">
+            @*<option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+            <option value="five">Five</option>*@
+        </select>
+    </div>
+
+    
+
+    <div class="form-group">
+        <label for="amura_id">ID:</label>
+        <input type="text" class="form-control" id="amura_id">
+    </div>
+    <div class="form-group">
+        <label for="kata_garums">Kāta garums:</label>
+        <input type="text" class="form-control" id="kata_garums">
+    </div>
+    <div class="form-group">
+        <label for="galvas_izmers">Galvas izmērs:</label>
+        <input type="text" class="form-control" id="galvas_izmers">
+    </div>
+    <div class="form-group">
+        <label for="ipasas_iezimes">Īpašās iezīmes:</label>
+        <input type="text" class="form-control" id="ipasas_iezimes">
+    </div>
+    <div class="form-group">
+        <label for="bojats">Bojāts:</label>
+        <input type="text" class="form-control" id="bojats">
+    </div>
+    <div class="form-group">
+        <label for="panema">Paņēma:</label>
+        <input type="text" class="form-control" id="panema">
+    </div>
+    <button id="amura_poga" type="submit" class="btn btn-default">Pievienot</button>
+</div>
