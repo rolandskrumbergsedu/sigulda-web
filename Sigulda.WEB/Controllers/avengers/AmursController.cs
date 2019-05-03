@@ -12,6 +12,7 @@ using Sigulda.WEB.Contexts.avengers;
 
 namespace Sigulda.WEB.Controllers.avengers
 {
+
     public class AmursController : ApiController
     {
         private AvengersModel db = new AvengersModel();
@@ -97,7 +98,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = amur.Amura_ID }, amur);
+            return CreatedAtRoute("AvengersApi-Amurs", new { id = amur.Amura_ID }, amur);
         }
 
         // DELETE: api/Amurs/5

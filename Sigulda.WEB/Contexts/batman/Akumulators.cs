@@ -6,6 +6,7 @@ namespace Sigulda.WEB.Contexts.batman
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Akumulators")]
     public partial class Akumulators
     {
         [Key]

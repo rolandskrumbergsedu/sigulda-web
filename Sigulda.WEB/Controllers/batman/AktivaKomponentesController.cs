@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/AktivaKomponentes
         public IQueryable<AktivaKomponente> GetAktīvā_komponente()
         {
-            return db.Aktīvā_komponente;
+            return db.AktivasKomponentes;
         }
 
         // GET: api/AktivaKomponentes/5
         [ResponseType(typeof(AktivaKomponente))]
         public IHttpActionResult GetAktivaKomponente(int id)
         {
-            AktivaKomponente aktivaKomponente = db.Aktīvā_komponente.Find(id);
+            AktivaKomponente aktivaKomponente = db.AktivasKomponentes.Find(id);
             if (aktivaKomponente == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Aktīvā_komponente.Add(aktivaKomponente);
+            db.AktivasKomponentes.Add(aktivaKomponente);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = aktivaKomponente.Aktīvās_komponentes_ID }, aktivaKomponente);
+            return CreatedAtRoute("BatmanApi-AktivaKomponentes", new { id = aktivaKomponente.Aktīvās_komponentes_ID }, aktivaKomponente);
         }
 
         // DELETE: api/AktivaKomponentes/5
         [ResponseType(typeof(AktivaKomponente))]
         public IHttpActionResult DeleteAktivaKomponente(int id)
         {
-            AktivaKomponente aktivaKomponente = db.Aktīvā_komponente.Find(id);
+            AktivaKomponente aktivaKomponente = db.AktivasKomponentes.Find(id);
             if (aktivaKomponente == null)
             {
                 return NotFound();
             }
 
-            db.Aktīvā_komponente.Remove(aktivaKomponente);
+            db.AktivasKomponentes.Remove(aktivaKomponente);
             db.SaveChanges();
 
             return Ok(aktivaKomponente);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool AktivaKomponenteExists(int id)
         {
-            return db.Aktīvā_komponente.Count(e => e.Aktīvās_komponentes_ID == id) > 0;
+            return db.AktivasKomponentes.Count(e => e.Aktīvās_komponentes_ID == id) > 0;
         }
     }
 }

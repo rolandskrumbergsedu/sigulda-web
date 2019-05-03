@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/Sensors
         public IQueryable<Sensors> GetSensors()
         {
-            return db.Sensors;
+            return db.Sensori;
         }
 
         // GET: api/Sensors/5
         [ResponseType(typeof(Sensors))]
         public IHttpActionResult GetSensors(int id)
         {
-            Sensors sensors = db.Sensors.Find(id);
+            Sensors sensors = db.Sensori.Find(id);
             if (sensors == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Sensors.Add(sensors);
+            db.Sensori.Add(sensors);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = sensors.Sensora_ID }, sensors);
+            return CreatedAtRoute("BatmanApi-Sensors", new { id = sensors.Sensora_ID }, sensors);
         }
 
         // DELETE: api/Sensors/5
         [ResponseType(typeof(Sensors))]
         public IHttpActionResult DeleteSensors(int id)
         {
-            Sensors sensors = db.Sensors.Find(id);
+            Sensors sensors = db.Sensori.Find(id);
             if (sensors == null)
             {
                 return NotFound();
             }
 
-            db.Sensors.Remove(sensors);
+            db.Sensori.Remove(sensors);
             db.SaveChanges();
 
             return Ok(sensors);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool SensorsExists(int id)
         {
-            return db.Sensors.Count(e => e.Sensora_ID == id) > 0;
+            return db.Sensori.Count(e => e.Sensora_ID == id) > 0;
         }
     }
 }

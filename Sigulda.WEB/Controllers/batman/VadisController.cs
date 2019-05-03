@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = vadi.Vadi_ID }, vadi);
+            return CreatedAtRoute("BatmanApi-VadisController", new { id = vadi.Vadi_ID }, vadi);
         }
 
         // DELETE: api/Vadis/5

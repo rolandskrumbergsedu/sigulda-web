@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = materiali.Materiala_ID }, materiali);
+            return CreatedAtRoute("AvengersApi-Materialis", new { id = materiali.Materiala_ID }, materiali);
         }
 
         // DELETE: api/Materialis/5

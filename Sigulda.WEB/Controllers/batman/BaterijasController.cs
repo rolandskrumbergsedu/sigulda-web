@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = baterija.Baterijas_ID }, baterija);
+            return CreatedAtRoute("BatmanApi-Baterija", new { id = baterija.Baterijas_ID }, baterija);
         }
 
         // DELETE: api/Baterijas/5

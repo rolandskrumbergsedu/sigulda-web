@@ -6,6 +6,7 @@ namespace Sigulda.WEB.Contexts.batman
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Elektromehāniskā_komponente")]
     public partial class ElektromehaniskaKomponente
     {
         [Key]

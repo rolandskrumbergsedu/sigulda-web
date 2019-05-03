@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/PasivaKomponentes
         public IQueryable<PasivaKomponente> GetPasīvā_komponente()
         {
-            return db.Pasīvā_komponente;
+            return db.PasīvasKomponentes;
         }
 
         // GET: api/PasivaKomponentes/5
         [ResponseType(typeof(PasivaKomponente))]
         public IHttpActionResult GetPasivaKomponente(int id)
         {
-            PasivaKomponente pasivaKomponente = db.Pasīvā_komponente.Find(id);
+            PasivaKomponente pasivaKomponente = db.PasīvasKomponentes.Find(id);
             if (pasivaKomponente == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Pasīvā_komponente.Add(pasivaKomponente);
+            db.PasīvasKomponentes.Add(pasivaKomponente);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = pasivaKomponente.Pasīvā_komponente_ID }, pasivaKomponente);
+            return CreatedAtRoute("BatmanApi-PasivaKomponente", new { id = pasivaKomponente.Pasīvā_komponente_ID }, pasivaKomponente);
         }
 
         // DELETE: api/PasivaKomponentes/5
         [ResponseType(typeof(PasivaKomponente))]
         public IHttpActionResult DeletePasivaKomponente(int id)
         {
-            PasivaKomponente pasivaKomponente = db.Pasīvā_komponente.Find(id);
+            PasivaKomponente pasivaKomponente = db.PasīvasKomponentes.Find(id);
             if (pasivaKomponente == null)
             {
                 return NotFound();
             }
 
-            db.Pasīvā_komponente.Remove(pasivaKomponente);
+            db.PasīvasKomponentes.Remove(pasivaKomponente);
             db.SaveChanges();
 
             return Ok(pasivaKomponente);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool PasivaKomponenteExists(int id)
         {
-            return db.Pasīvā_komponente.Count(e => e.Pasīvā_komponente_ID == id) > 0;
+            return db.PasīvasKomponentes.Count(e => e.Pasīvā_komponente_ID == id) > 0;
         }
     }
 }

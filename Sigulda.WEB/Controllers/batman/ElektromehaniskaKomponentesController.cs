@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/ElektromehaniskaKomponentes
         public IQueryable<ElektromehaniskaKomponente> GetElektromehāniskā_komponente()
         {
-            return db.Elektromehāniskā_komponente;
+            return db.ElektromehāniskasKomponentes;
         }
 
         // GET: api/ElektromehaniskaKomponentes/5
         [ResponseType(typeof(ElektromehaniskaKomponente))]
         public IHttpActionResult GetElektromehaniskaKomponente(int id)
         {
-            ElektromehaniskaKomponente elektromehaniskaKomponente = db.Elektromehāniskā_komponente.Find(id);
+            ElektromehaniskaKomponente elektromehaniskaKomponente = db.ElektromehāniskasKomponentes.Find(id);
             if (elektromehaniskaKomponente == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Elektromehāniskā_komponente.Add(elektromehaniskaKomponente);
+            db.ElektromehāniskasKomponentes.Add(elektromehaniskaKomponente);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = elektromehaniskaKomponente.Elektromehāniskā_komponente_ID }, elektromehaniskaKomponente);
+            return CreatedAtRoute("BatmanApi-ElektromehaniskaKomponente", new { id = elektromehaniskaKomponente.Elektromehāniskā_komponente_ID }, elektromehaniskaKomponente);
         }
 
         // DELETE: api/ElektromehaniskaKomponentes/5
         [ResponseType(typeof(ElektromehaniskaKomponente))]
         public IHttpActionResult DeleteElektromehaniskaKomponente(int id)
         {
-            ElektromehaniskaKomponente elektromehaniskaKomponente = db.Elektromehāniskā_komponente.Find(id);
+            ElektromehaniskaKomponente elektromehaniskaKomponente = db.ElektromehāniskasKomponentes.Find(id);
             if (elektromehaniskaKomponente == null)
             {
                 return NotFound();
             }
 
-            db.Elektromehāniskā_komponente.Remove(elektromehaniskaKomponente);
+            db.ElektromehāniskasKomponentes.Remove(elektromehaniskaKomponente);
             db.SaveChanges();
 
             return Ok(elektromehaniskaKomponente);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool ElektromehaniskaKomponenteExists(int id)
         {
-            return db.Elektromehāniskā_komponente.Count(e => e.Elektromehāniskā_komponente_ID == id) > 0;
+            return db.ElektromehāniskasKomponentes.Count(e => e.Elektromehāniskā_komponente_ID == id) > 0;
         }
     }
 }

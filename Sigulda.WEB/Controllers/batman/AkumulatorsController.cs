@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/Akumulators
         public IQueryable<Akumulators> GetAkumulators()
         {
-            return db.Akumulators;
+            return db.Akumulatori;
         }
 
         // GET: api/Akumulators/5
         [ResponseType(typeof(Akumulators))]
         public IHttpActionResult GetAkumulators(int id)
         {
-            Akumulators akumulators = db.Akumulators.Find(id);
+            Akumulators akumulators = db.Akumulatori.Find(id);
             if (akumulators == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Akumulators.Add(akumulators);
+            db.Akumulatori.Add(akumulators);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = akumulators.Akumulatora_ID }, akumulators);
+            return CreatedAtRoute("BatmanApi-Akumulators", new { id = akumulators.Akumulatora_ID }, akumulators);
         }
 
         // DELETE: api/Akumulators/5
         [ResponseType(typeof(Akumulators))]
         public IHttpActionResult DeleteAkumulators(int id)
         {
-            Akumulators akumulators = db.Akumulators.Find(id);
+            Akumulators akumulators = db.Akumulatori.Find(id);
             if (akumulators == null)
             {
                 return NotFound();
             }
 
-            db.Akumulators.Remove(akumulators);
+            db.Akumulatori.Remove(akumulators);
             db.SaveChanges();
 
             return Ok(akumulators);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool AkumulatorsExists(int id)
         {
-            return db.Akumulators.Count(e => e.Akumulatora_ID == id) > 0;
+            return db.Akumulatori.Count(e => e.Akumulatora_ID == id) > 0;
         }
     }
 }

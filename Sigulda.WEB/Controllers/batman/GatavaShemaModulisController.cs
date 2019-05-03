@@ -19,14 +19,14 @@ namespace Sigulda.WEB.Controllers.batman
         // GET: api/GatavaShemaModulis
         public IQueryable<GatavaShemaModulis> GetGatavā_shēma_modulis()
         {
-            return db.Gatavā_shēma_modulis;
+            return db.GatavasShemasModulis;
         }
 
         // GET: api/GatavaShemaModulis/5
         [ResponseType(typeof(GatavaShemaModulis))]
         public IHttpActionResult GetGatavaShemaModulis(int id)
         {
-            GatavaShemaModulis gatavaShemaModulis = db.Gatavā_shēma_modulis.Find(id);
+            GatavaShemaModulis gatavaShemaModulis = db.GatavasShemasModulis.Find(id);
             if (gatavaShemaModulis == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Sigulda.WEB.Controllers.batman
                 return BadRequest(ModelState);
             }
 
-            db.Gatavā_shēma_modulis.Add(gatavaShemaModulis);
+            db.GatavasShemasModulis.Add(gatavaShemaModulis);
 
             try
             {
@@ -97,20 +97,20 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = gatavaShemaModulis.Gatavā_shēma_moduļa_ID }, gatavaShemaModulis);
+            return CreatedAtRoute("BatmanApi-GatavaShemaModulis", new { id = gatavaShemaModulis.Gatavā_shēma_moduļa_ID }, gatavaShemaModulis);
         }
 
         // DELETE: api/GatavaShemaModulis/5
         [ResponseType(typeof(GatavaShemaModulis))]
         public IHttpActionResult DeleteGatavaShemaModulis(int id)
         {
-            GatavaShemaModulis gatavaShemaModulis = db.Gatavā_shēma_modulis.Find(id);
+            GatavaShemaModulis gatavaShemaModulis = db.GatavasShemasModulis.Find(id);
             if (gatavaShemaModulis == null)
             {
                 return NotFound();
             }
 
-            db.Gatavā_shēma_modulis.Remove(gatavaShemaModulis);
+            db.GatavasShemasModulis.Remove(gatavaShemaModulis);
             db.SaveChanges();
 
             return Ok(gatavaShemaModulis);
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.batman
 
         private bool GatavaShemaModulisExists(int id)
         {
-            return db.Gatavā_shēma_modulis.Count(e => e.Gatavā_shēma_moduļa_ID == id) > 0;
+            return db.GatavasShemasModulis.Count(e => e.Gatavā_shēma_moduļa_ID == id) > 0;
         }
     }
 }

@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = skruvjgriezni.Skruvgriezna_ID }, skruvjgriezni);
+            return CreatedAtRoute("AvengersApi-Skruvjgrieznis", new { id = skruvjgriezni.Skruvgriezna_ID }, skruvjgriezni);
         }
 
         // DELETE: api/Skruvjgrieznis/5

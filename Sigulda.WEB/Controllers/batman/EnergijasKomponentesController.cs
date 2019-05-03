@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = energijasKomponente.Enerģijas_komponente_ID }, energijasKomponente);
+            return CreatedAtRoute("BatmanApi-EnergijasKomponente", new { id = energijasKomponente.Enerģijas_komponente_ID }, energijasKomponente);
         }
 
         // DELETE: api/EnergijasKomponentes/5

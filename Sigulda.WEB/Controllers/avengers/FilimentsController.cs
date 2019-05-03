@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = filiments.filimenta_ID }, filiments);
+            return CreatedAtRoute("AvengersApi-Filiments", new { id = filiments.filimenta_ID }, filiments);
         }
 
         // DELETE: api/Filiments/5

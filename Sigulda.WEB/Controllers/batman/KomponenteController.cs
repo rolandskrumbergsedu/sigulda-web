@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.batman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = komponente.Komponente_ID }, komponente);
+            return CreatedAtRoute("BatmanApi-Komponente", new { id = komponente.Komponente_ID }, komponente);
         }
 
         // DELETE: api/Komponente/5

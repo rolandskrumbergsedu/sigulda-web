@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = knaibles.Knaibles_ID }, knaibles);
+            return CreatedAtRoute("AvengersApi-Knaibles", new { id = knaibles.Knaibles_ID }, knaibles);
         }
 
         // DELETE: api/Knaibles/5

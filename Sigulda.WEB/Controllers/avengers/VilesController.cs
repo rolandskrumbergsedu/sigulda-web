@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = viles.Viles_ID }, viles);
+            return CreatedAtRoute("AvengersApi-Viles", new { id = viles.Viles_ID }, viles);
         }
 
         // DELETE: api/Viles/5
