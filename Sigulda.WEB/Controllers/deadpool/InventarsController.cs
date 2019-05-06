@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = inventars.InventaraID }, inventars);
+            return CreatedAtRoute("DeadpoolApi-Inventars", new { id = inventars.InventaraID }, inventars);
         }
 
         // DELETE: api/Inventars/5

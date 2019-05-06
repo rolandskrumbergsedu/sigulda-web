@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = elektroniskasIerices.IericesID }, elektroniskasIerices);
+            return CreatedAtRoute("DeadpoolApi-ElektroniskasIerices", new { id = elektroniskasIerices.IericesID }, elektroniskasIerices);
         }
 
         // DELETE: api/ElektroniskasIerices/5

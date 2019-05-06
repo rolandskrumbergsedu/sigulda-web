@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = atbildigais.AtbildigaisID }, atbildigais);
+            return CreatedAtRoute("DeadpoolApi-Atbildigais", new { id = atbildigais.AtbildigaisID }, atbildigais);
         }
 
         // DELETE: api/Atbildigais/5

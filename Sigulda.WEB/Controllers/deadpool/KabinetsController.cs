@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = kabinets.KabinetaID }, kabinets);
+            return CreatedAtRoute("DeadpoolApi-Kabinets", new { id = kabinets.KabinetaID }, kabinets);
         }
 
         // DELETE: api/Kabinets/5
