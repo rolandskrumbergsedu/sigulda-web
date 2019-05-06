@@ -6,6 +6,7 @@ namespace Sigulda.WEB.Contexts.captain_america
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Macibu_stunda")]
     public partial class MacibuStunda
     {
         [Key]

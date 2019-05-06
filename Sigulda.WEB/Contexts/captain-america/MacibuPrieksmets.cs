@@ -6,6 +6,7 @@ namespace Sigulda.WEB.Contexts.captain_america
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Macibu_prieksmets")]
     public partial class MacibuPrieksmets
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
