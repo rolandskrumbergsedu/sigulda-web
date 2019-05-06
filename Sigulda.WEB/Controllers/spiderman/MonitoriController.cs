@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.spiderman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = monitori.Monitori_ID }, monitori);
+            return CreatedAtRoute("SpidermanApi-Monitori", new { id = monitori.Monitori_ID }, monitori);
         }
 
         // DELETE: api/Monitori/5

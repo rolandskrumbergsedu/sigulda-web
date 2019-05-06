@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = reagenti.Reagenti_ID }, reagenti);
+            return CreatedAtRoute("IronManApi-Reagenti", new { id = reagenti.Reagenti_ID }, reagenti);
         }
 
         // DELETE: api/Reagenti/5

@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.spiderman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = citi.Citi_ID }, citi);
+            return CreatedAtRoute("SpidermanApi-Citi", new { id = citi.Citi_ID }, citi);
         }
 
         // DELETE: api/Citi/5

@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.spiderman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = galdi.Galdi_ID }, galdi);
+            return CreatedAtRoute("SpidermanApi-Galdi", new { id = galdi.Galdi_ID }, galdi);
         }
 
         // DELETE: api/Galdi/5

@@ -19,7 +19,7 @@ namespace Sigulda.WEB.Controllers.captain_america
         // GET: api/Klases
         public IQueryable<Klase> GetKlases()
         {
-            return db.Klases;
+            return db.Klases.ToList().AsQueryable();
         }
 
         // GET: api/Klases/5

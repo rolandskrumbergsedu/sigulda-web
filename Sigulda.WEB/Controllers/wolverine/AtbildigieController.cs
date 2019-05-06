@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.wolverine
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = atbildigie.Vards }, atbildigie);
+            return CreatedAtRoute("WolverineApi-Atbildigie", new { id = atbildigie.Vards }, atbildigie);
         }
 
         // DELETE: api/Atbildigie/5

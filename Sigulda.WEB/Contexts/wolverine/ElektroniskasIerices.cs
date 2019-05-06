@@ -6,6 +6,7 @@ namespace Sigulda.WEB.Contexts.wolverine
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Elektroniskas_ierices")]
     public partial class ElektroniskasIerices
     {
         [StringLength(50)]

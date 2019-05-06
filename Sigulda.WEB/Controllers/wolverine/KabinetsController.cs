@@ -12,7 +12,7 @@ using Sigulda.WEB.Contexts.wolverine;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KabinetsController : ApiController
+    public class Kabinets2Controller : ApiController
     {
         private WolverineModel db = new WolverineModel();
 
@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.wolverine
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = kabinets.Elektronika }, kabinets);
+            return CreatedAtRoute("WolverineApi-Kabinets", new { id = kabinets.Elektronika }, kabinets);
         }
 
         // DELETE: api/Kabinets/5

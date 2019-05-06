@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.spiderman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = kresli.Kresli_ID }, kresli);
+            return CreatedAtRoute("SpidermanApi-Kresli", new { id = kresli.Kresli_ID }, kresli);
         }
 
         // DELETE: api/Kresli/5

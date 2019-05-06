@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = iekarta.Iekartas_ID }, iekarta);
+            return CreatedAtRoute("IronManApi-Iekartas", new { id = iekarta.Iekartas_ID }, iekarta);
         }
 
         // DELETE: api/Iekartas/5

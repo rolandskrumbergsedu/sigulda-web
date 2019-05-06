@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = trauki.Trauki_ID }, trauki);
+            return CreatedAtRoute("IronManApi-Trauki", new { id = trauki.Trauki_ID }, trauki);
         }
 
         // DELETE: api/Trauki/5

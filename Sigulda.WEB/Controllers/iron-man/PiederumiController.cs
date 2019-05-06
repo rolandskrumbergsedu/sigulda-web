@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = piederumi.Piederumi_ID }, piederumi);
+            return CreatedAtRoute("IronManApi-Piederumi", new { id = piederumi.Piederumi_ID }, piederumi);
         }
 
         // DELETE: api/Piederumi/5

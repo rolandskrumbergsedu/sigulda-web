@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.spiderman
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = tafeles.Tafeles_ID }, tafeles);
+            return CreatedAtRoute("SpidermanApi-Tafeles", new { id = tafeles.Tafeles_ID }, tafeles);
         }
 
         // DELETE: api/Tafeles/5

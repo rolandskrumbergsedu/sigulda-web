@@ -228,13 +228,13 @@ namespace Sigulda.WEB
             config.Routes.MapHttpRoute(
                name: "WolverineApi-ElektroniskasIerices",
                routeTemplate: "api/wolverine/elektroniskas-ierices/{id}",
-               defaults: new { controller = "ElektroniskasIerices", id = RouteParameter.Optional }
+               defaults: new { controller = "ElektroniskasIerices2", id = RouteParameter.Optional }
            );
 
             config.Routes.MapHttpRoute(
                name: "WolverineApi-Kabinets",
                routeTemplate: "api/wolverine/kabinets/{id}",
-               defaults: new { controller = "Kabinets", id = RouteParameter.Optional }
+               defaults: new { controller = "Kabinets2", id = RouteParameter.Optional }
            );
 
             config.Routes.MapHttpRoute(

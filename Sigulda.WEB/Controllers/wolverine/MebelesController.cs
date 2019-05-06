@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.wolverine
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = mebeles.MebelesID }, mebeles);
+            return CreatedAtRoute("WolverineApi-Mebeles", new { id = mebeles.MebelesID }, mebeles);
         }
 
         // DELETE: api/Mebeles/5

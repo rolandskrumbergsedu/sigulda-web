@@ -12,7 +12,7 @@ using Sigulda.WEB.Contexts.wolverine;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class ElektroniskasIericesController : ApiController
+    public class ElektroniskasIerices2Controller : ApiController
     {
         private WolverineModel db = new WolverineModel();
 
@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.wolverine
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = elektroniskasIerices.vertiba }, elektroniskasIerices);
+            return CreatedAtRoute("WolverineApi-ElektroniskasIerices", new { id = elektroniskasIerices.vertiba }, elektroniskasIerices);
         }
 
         // DELETE: api/ElektroniskasIerices/5
