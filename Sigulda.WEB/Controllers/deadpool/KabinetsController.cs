@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.deadpool
         private DeadPoolModel db = new DeadPoolModel();
 
         // GET: api/Kabinets
-        public IQueryable<Kabinets> GetKabinets()
+        public IQueryable<KabinetsViewModel> GetKabinets()
         {
-            return db.Kabinets;
+            return db.Kabinets.Select(x => new KabinetsViewModel
+            {
+                AtbildigaisID = x.AtbildigaisID,
+                IericesID = x.IericesID,
+                InventaraID = x.InventaraID,
+                KabinetaID = x.KabinetaID
+            });
         }
 
         // GET: api/Kabinets/5
-        [ResponseType(typeof(Kabinets))]
+        [ResponseType(typeof(KabinetsViewModel))]
         public IHttpActionResult GetKabinets(int id)
         {
             Kabinets kabinets = db.Kabinets.Find(id);
@@ -32,23 +39,36 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(kabinets);
+            return Ok(new KabinetsViewModel
+            {
+                KabinetaID = kabinets.KabinetaID,
+                InventaraID = kabinets.InventaraID,
+                IericesID = kabinets.IericesID,
+                AtbildigaisID = kabinets.AtbildigaisID
+            });
         }
 
         // PUT: api/Kabinets/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKabinets(int id, Kabinets kabinets)
+        public IHttpActionResult PutKabinets(int id, KabinetsViewModel kabinetsModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var kabinets = db.Kabinets.FirstOrDefault(x => x.KabinetaID == kabinetsModel.KabinetaID);
             if (id != kabinets.KabinetaID)
             {
                 return BadRequest();
             }
 
+            kabinets.InventaraID = kabinetsModel.InventaraID;
+            kabinets.Inventars = db.Inventars.FirstOrDefault(x => x.InventaraID == kabinetsModel.InventaraID);
+            kabinets.IericesID = kabinetsModel.IericesID;
+            kabinets.ElektroniskasIerices = db.ElektroniskasIerices.FirstOrDefault(x => x.IericesID == kabinetsModel.IericesID);
+            kabinets.AtbildigaisID = kabinetsModel.AtbildigaisID;
+            kabinets.Atbildigais1 = db.Atbildigais.FirstOrDefault(x => x.AtbildigaisID == kabinetsModel.AtbildigaisID);
             db.Entry(kabinets).State = EntityState.Modified;
 
             try
@@ -71,14 +91,23 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/Kabinets
-        [ResponseType(typeof(Kabinets))]
-        public IHttpActionResult PostKabinets(Kabinets kabinets)
+        [ResponseType(typeof(KabinetsViewModel))]
+        public IHttpActionResult PostKabinets(KabinetsViewModel kabinetsModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var kabinets = new Kabinets
+            {
+                InventaraID = kabinetsModel.InventaraID,
+                Inventars = db.Inventars.FirstOrDefault(x => x.InventaraID == kabinetsModel.InventaraID),
+                IericesID = kabinetsModel.IericesID,
+                ElektroniskasIerices = db.ElektroniskasIerices.FirstOrDefault(x => x.IericesID == kabinetsModel.IericesID),
+                AtbildigaisID = kabinetsModel.AtbildigaisID,
+                Atbildigais1 = db.Atbildigais.FirstOrDefault(x => x.AtbildigaisID == kabinetsModel.AtbildigaisID)
+            };
             db.Kabinets.Add(kabinets);
 
             try
@@ -101,7 +130,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // DELETE: api/Kabinets/5
-        [ResponseType(typeof(Kabinets))]
+        [ResponseType(typeof(KabinetsViewModel))]
         public IHttpActionResult DeleteKabinets(int id)
         {
             Kabinets kabinets = db.Kabinets.Find(id);
@@ -113,7 +142,12 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Kabinets.Remove(kabinets);
             db.SaveChanges();
 
-            return Ok(kabinets);
+            return Ok(new KabinetsViewModel {
+                AtbildigaisID = kabinets.AtbildigaisID,
+                IericesID = kabinets.IericesID,
+                InventaraID = kabinets.InventaraID,
+                KabinetaID = kabinets.KabinetaID
+            });
         }
 
         protected override void Dispose(bool disposing)

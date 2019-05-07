@@ -17,6 +17,7 @@ namespace Sigulda.WEB.Contexts.spiderman
         public virtual DbSet<Kresli> Kresli { get; set; }
         public virtual DbSet<Monitori> Monitori { get; set; }
         public virtual DbSet<Tafeles> Tafeles { get; set; }
+        public virtual DbSet<Inventars> Inventars { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

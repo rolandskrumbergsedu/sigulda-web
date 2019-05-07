@@ -220,6 +220,12 @@ namespace Sigulda.WEB
             );
 
             config.Routes.MapHttpRoute(
+                name: "SpidermanApi-Inventars",
+                routeTemplate: "api/spiderman/inventars/{id}",
+                defaults: new { controller = "Inventars2", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "WolverineApi-Atbildigie",
                 routeTemplate: "api/wolverine/atbildigie/{id}",
                 defaults: new { controller = "Atbildigie", id = RouteParameter.Optional }

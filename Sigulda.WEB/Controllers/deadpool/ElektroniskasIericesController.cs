@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.deadpool
         private DeadPoolModel db = new DeadPoolModel();
 
         // GET: api/ElektroniskasIerices
-        public IQueryable<ElektroniskasIerices> GetElektroniskasIerices()
+        public IQueryable<ElektroniskasIericesViewModel> GetElektroniskasIerices()
         {
-            return db.ElektroniskasIerices;
+            return db.ElektroniskasIerices.Select(x => new ElektroniskasIericesViewModel {
+                Datums = x.Datums,
+                IericesCena = x.IericesCena,
+                IericesID = x.IericesID,
+                IericesNolietojums = x.IericesNolietojums,
+                IericesNosaukums = x.IericesNosaukums
+            });
         }
 
         // GET: api/ElektroniskasIerices/5
-        [ResponseType(typeof(ElektroniskasIerices))]
+        [ResponseType(typeof(ElektroniskasIericesViewModel))]
         public IHttpActionResult GetElektroniskasIerices(int id)
         {
             ElektroniskasIerices elektroniskasIerices = db.ElektroniskasIerices.Find(id);
@@ -32,22 +39,35 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(elektroniskasIerices);
+            return Ok(new ElektroniskasIericesViewModel
+            {
+                Datums =elektroniskasIerices.Datums,
+                IericesNosaukums = elektroniskasIerices.IericesNosaukums,
+                IericesNolietojums = elektroniskasIerices.IericesNolietojums,
+                IericesID = elektroniskasIerices.IericesID,
+                IericesCena = elektroniskasIerices.IericesCena
+            });
         }
 
         // PUT: api/ElektroniskasIerices/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutElektroniskasIerices(int id, ElektroniskasIerices elektroniskasIerices)
+        public IHttpActionResult PutElektroniskasIerices(int id, ElektroniskasIericesViewModel elektroniskasIericesModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var elektroniskasIerices = db.ElektroniskasIerices.FirstOrDefault(x => x.IericesID == elektroniskasIericesModel.IericesID);
             if (id != elektroniskasIerices.IericesID)
             {
                 return BadRequest();
             }
+
+            elektroniskasIerices.IericesCena = elektroniskasIericesModel.IericesCena;
+            elektroniskasIerices.IericesNolietojums = elektroniskasIericesModel.IericesNolietojums;
+            elektroniskasIerices.IericesNosaukums = elektroniskasIericesModel.IericesNosaukums;
+            elektroniskasIerices.Datums = elektroniskasIericesModel.Datums;
 
             db.Entry(elektroniskasIerices).State = EntityState.Modified;
 
@@ -71,14 +91,21 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/ElektroniskasIerices
-        [ResponseType(typeof(ElektroniskasIerices))]
-        public IHttpActionResult PostElektroniskasIerices(ElektroniskasIerices elektroniskasIerices)
+        [ResponseType(typeof(ElektroniskasIericesViewModel))]
+        public IHttpActionResult PostElektroniskasIerices(ElektroniskasIericesViewModel elektroniskasIericesModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            var elektroniskasIerices = new ElektroniskasIerices
+            {
+                Datums = elektroniskasIericesModel.Datums,
+                IericesCena = elektroniskasIericesModel.IericesCena,
+                IericesNosaukums = elektroniskasIericesModel.IericesNosaukums,
+                IericesNolietojums = elektroniskasIericesModel.IericesNolietojums,
+                IericesID = elektroniskasIericesModel.IericesID
+            };
             db.ElektroniskasIerices.Add(elektroniskasIerices);
 
             try
@@ -97,11 +124,17 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DeadpoolApi-ElektroniskasIerices", new { id = elektroniskasIerices.IericesID }, elektroniskasIerices);
+            return CreatedAtRoute("DeadpoolApi-ElektroniskasIerices", new { id = elektroniskasIerices.IericesID }, new ElektroniskasIericesViewModel {
+                Datums = elektroniskasIerices.Datums,
+                IericesCena = elektroniskasIerices.IericesCena,
+                IericesNosaukums = elektroniskasIerices.IericesNosaukums,
+                IericesNolietojums = elektroniskasIerices.IericesNolietojums,
+                IericesID = elektroniskasIerices.IericesID
+            });
         }
 
         // DELETE: api/ElektroniskasIerices/5
-        [ResponseType(typeof(ElektroniskasIerices))]
+        [ResponseType(typeof(ElektroniskasIericesViewModel))]
         public IHttpActionResult DeleteElektroniskasIerices(int id)
         {
             ElektroniskasIerices elektroniskasIerices = db.ElektroniskasIerices.Find(id);
@@ -113,7 +146,14 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.ElektroniskasIerices.Remove(elektroniskasIerices);
             db.SaveChanges();
 
-            return Ok(elektroniskasIerices);
+            return Ok(new ElektroniskasIericesViewModel {
+                Datums = elektroniskasIerices.Datums,
+                IericesCena = elektroniskasIerices.IericesCena,
+                IericesNosaukums = elektroniskasIerices.IericesNosaukums,
+                IericesNolietojums = elektroniskasIerices.IericesNolietojums,
+                IericesID = elektroniskasIerices.IericesID
+            }
+            );
         }
 
         protected override void Dispose(bool disposing)

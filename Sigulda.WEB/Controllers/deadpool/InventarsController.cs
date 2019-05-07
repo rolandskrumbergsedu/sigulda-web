@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.deadpool
         private DeadPoolModel db = new DeadPoolModel();
 
         // GET: api/Inventars
-        public IQueryable<Inventars> GetInventars()
+        public IQueryable<InventarsViewModel> GetInventars()
         {
-            return db.Inventars;
+            return db.Inventars.Select(x => new InventarsViewModel {
+            Cena = x.Cena,
+            Datums = x.Datums,
+            InventaraID = x.InventaraID,
+            InvNosaukums = x.InvNosaukums,
+            Nolietojums = x.Nolietojums
+            });
         }
 
         // GET: api/Inventars/5
-        [ResponseType(typeof(Inventars))]
+        [ResponseType(typeof(InventarsViewModel))]
         public IHttpActionResult GetInventars(int id)
         {
             Inventars inventars = db.Inventars.Find(id);
@@ -32,22 +39,33 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(inventars);
+            return Ok(new InventarsViewModel {
+                Nolietojums = inventars.Nolietojums,
+                InvNosaukums = inventars.InvNosaukums,
+                InventaraID = inventars.InventaraID,
+                Datums = inventars.Datums,
+                Cena = inventars.Cena
+            });
         }
 
         // PUT: api/Inventars/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutInventars(int id, Inventars inventars)
+        public IHttpActionResult PutInventars(int id, InventarsViewModel inventarsModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var inventars = db.Inventars.FirstOrDefault(x => x.InventaraID == inventarsModel.InventaraID);
             if (id != inventars.InventaraID)
             {
                 return BadRequest();
             }
+            inventars.InvNosaukums = inventarsModel.InvNosaukums;
+            inventars.Nolietojums = inventarsModel.Nolietojums;
+            inventars.Datums = inventarsModel.Datums;
+            inventars.Cena = inventarsModel.Cena;
 
             db.Entry(inventars).State = EntityState.Modified;
 
@@ -71,14 +89,22 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/Inventars
-        [ResponseType(typeof(Inventars))]
-        public IHttpActionResult PostInventars(Inventars inventars)
+        [ResponseType(typeof(InventarsViewModel))]
+        public IHttpActionResult PostInventars(InventarsViewModel inventarsModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var inventars = new Inventars
+            {
+                Cena = inventarsModel.Cena,
+                Datums = inventarsModel.Datums,
+                Nolietojums = inventarsModel.Nolietojums,
+                InvNosaukums = inventarsModel.InvNosaukums,
+                InventaraID = inventarsModel.InventaraID
+            };
             db.Inventars.Add(inventars);
 
             try
@@ -97,11 +123,17 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DeadpoolApi-Inventars", new { id = inventars.InventaraID }, inventars);
+            return CreatedAtRoute("DeadpoolApi-Inventars", new { id = inventars.InventaraID }, new InventarsViewModel {
+                Cena = inventarsModel.Cena,
+                Datums = inventarsModel.Datums,
+                Nolietojums = inventarsModel.Nolietojums,
+                InvNosaukums = inventarsModel.InvNosaukums,
+                InventaraID = inventarsModel.InventaraID
+            });
         }
 
         // DELETE: api/Inventars/5
-        [ResponseType(typeof(Inventars))]
+        [ResponseType(typeof(InventarsViewModel))]
         public IHttpActionResult DeleteInventars(int id)
         {
             Inventars inventars = db.Inventars.Find(id);
@@ -113,7 +145,13 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Inventars.Remove(inventars);
             db.SaveChanges();
 
-            return Ok(inventars);
+            return Ok(new InventarsViewModel {
+                Cena = inventars.Cena,
+                Datums = inventars.Datums,
+                Nolietojums = inventars.Nolietojums,
+                InvNosaukums = inventars.InvNosaukums,
+                InventaraID = inventars.InventaraID
+            });
         }
 
         protected override void Dispose(bool disposing)

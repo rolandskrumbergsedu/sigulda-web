@@ -27,5 +27,7 @@ namespace Sigulda.WEB.Contexts.wolverine
                 .Property(e => e.Amats)
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<Sigulda.WEB.Contexts.deadpool.Inventars> Inventars { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,18 @@ namespace Sigulda.WEB.Controllers.deadpool
         private DeadPoolModel db = new DeadPoolModel();
 
         // GET: api/Atbildigais
-        public IQueryable<Atbildigais> GetAtbildigais()
+        public IQueryable<AtbildigaisViewModel> GetAtbildigais()
         {
-            return db.Atbildigais;
+            return db.Atbildigais.Select(x => new AtbildigaisViewModel {
+                AtbildigaisID = x.AtbildigaisID,
+                AtbildigaisUzvards = x.AtbildigaisUzvards,
+                AtbildigaisVards = x.AtbildigaisVards,
+                KabinetaID = x.KabinetaID
+            });
         }
 
         // GET: api/Atbildigais/5
-        [ResponseType(typeof(Atbildigais))]
+        [ResponseType(typeof(AtbildigaisViewModel))]
         public IHttpActionResult GetAtbildigais(int id)
         {
             Atbildigais atbildigais = db.Atbildigais.Find(id);
@@ -32,18 +38,25 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(atbildigais);
+            return Ok(new AtbildigaisViewModel
+            {
+                AtbildigaisID = atbildigais.AtbildigaisID,
+                KabinetaID = atbildigais.KabinetaID,
+                AtbildigaisVards = atbildigais.AtbildigaisVards,
+                AtbildigaisUzvards = atbildigais.AtbildigaisUzvards
+            });
         }
 
         // PUT: api/Atbildigais/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAtbildigais(int id, Atbildigais atbildigais)
+        public IHttpActionResult PutAtbildigais(int id, AtbildigaisViewModel atbildigaisModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var atbildigais = db.Atbildigais.FirstOrDefault(x => x.AtbildigaisID == atbildigaisModel.AtbildigaisID );
             if (id != atbildigais.AtbildigaisID)
             {
                 return BadRequest();
@@ -71,14 +84,21 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/Atbildigais
-        [ResponseType(typeof(Atbildigais))]
-        public IHttpActionResult PostAtbildigais(Atbildigais atbildigais)
+        [ResponseType(typeof(AtbildigaisViewModel))]
+        public IHttpActionResult PostAtbildigais(AtbildigaisViewModel atbildigaisModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            var atbildigais = new Atbildigais
+            {
+                AtbildigaisID = atbildigaisModel.AtbildigaisID,
+                AtbildigaisUzvards = atbildigaisModel.AtbildigaisUzvards,
+                AtbildigaisVards = atbildigaisModel.AtbildigaisVards,
+                KabinetaID = atbildigaisModel.KabinetaID,
+                Kabinets = db.Kabinets.FirstOrDefault(x => x.KabinetaID == atbildigaisModel.KabinetaID)
+            };
             db.Atbildigais.Add(atbildigais);
 
             try
@@ -97,11 +117,16 @@ namespace Sigulda.WEB.Controllers.deadpool
                 }
             }
 
-            return CreatedAtRoute("DeadpoolApi-Atbildigais", new { id = atbildigais.AtbildigaisID }, atbildigais);
+            return CreatedAtRoute("DeadpoolApi-Atbildigais", new { id = atbildigais.AtbildigaisID }, new AtbildigaisViewModel {
+                KabinetaID = atbildigais.KabinetaID,
+                AtbildigaisVards = atbildigais.AtbildigaisVards,
+                AtbildigaisUzvards = atbildigais.AtbildigaisUzvards,
+                AtbildigaisID = atbildigais.AtbildigaisID
+            });
         }
 
         // DELETE: api/Atbildigais/5
-        [ResponseType(typeof(Atbildigais))]
+        [ResponseType(typeof(AtbildigaisViewModel))]
         public IHttpActionResult DeleteAtbildigais(int id)
         {
             Atbildigais atbildigais = db.Atbildigais.Find(id);
@@ -113,7 +138,12 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Atbildigais.Remove(atbildigais);
             db.SaveChanges();
 
-            return Ok(atbildigais);
+            return Ok(new AtbildigaisViewModel {
+                AtbildigaisID = atbildigais.AtbildigaisID,
+                AtbildigaisUzvards = atbildigais.AtbildigaisUzvards,
+                AtbildigaisVards = atbildigais.AtbildigaisVards,
+                KabinetaID = atbildigais.KabinetaID
+            });
         }
 
         protected override void Dispose(bool disposing)

@@ -204,6 +204,7 @@
     <Compile Include="Contexts\iron-man\Trauki.cs" />
     <Compile Include="Contexts\spiderman\Citi.cs" />
     <Compile Include="Contexts\spiderman\Galdi.cs" />
+    <Compile Include="Contexts\spiderman\Inventars.cs" />
     <Compile Include="Contexts\spiderman\Kresli.cs" />
     <Compile Include="Contexts\spiderman\Monitori.cs" />
     <Compile Include="Contexts\spiderman\SpidermanModel.cs" />
@@ -242,6 +243,10 @@
     <Compile Include="Controllers\deadpool\ElektroniskasIericesController.cs" />
     <Compile Include="Controllers\deadpool\InventarsController.cs" />
     <Compile Include="Controllers\deadpool\KabinetsController.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\AtbildigaisViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\ElektroniskasIericesViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\InventarsViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\KabinetsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iron-man\IekartasController.cs" />
     <Compile Include="Controllers\iron-man\PiederumiController.cs" />
@@ -249,6 +254,7 @@
     <Compile Include="Controllers\iron-man\TraukiController.cs" />
     <Compile Include="Controllers\spiderman\CitiController.cs" />
     <Compile Include="Controllers\spiderman\GaldiController.cs" />
+    <Compile Include="Controllers\spiderman\Inventars2Controller.cs" />
     <Compile Include="Controllers\spiderman\KresliController.cs" />
     <Compile Include="Controllers\spiderman\MonitoriController.cs" />
     <Compile Include="Controllers\spiderman\TafelesController.cs" />
