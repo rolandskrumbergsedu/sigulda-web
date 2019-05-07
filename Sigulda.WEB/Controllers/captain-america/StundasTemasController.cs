@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Controllers.captain_america.ViewModels;
 
 namespace Sigulda.WEB.Controllers.captain_america
 {
@@ -17,13 +18,17 @@ namespace Sigulda.WEB.Controllers.captain_america
         private CaptainAmericaModel db = new CaptainAmericaModel();
 
         // GET: api/StundasTemas
-        public IQueryable<StundasTema> GetStundasTemas()
+        public IQueryable<StundasTemaViewModel> GetStundasTemas()
         {
-            return db.StundasTemas;
+            return db.StundasTemas.Select(x => new StundasTemaViewModel {
+                Tema_ID = x.Tema_ID,
+                Tema = x.Tema,
+                Piezime = x.Piezime
+            });
         }
 
         // GET: api/StundasTemas/5
-        [ResponseType(typeof(StundasTema))]
+        [ResponseType(typeof(StundasTemaViewModel))]
         public IHttpActionResult GetStundasTema(int id)
         {
             StundasTema stundasTema = db.StundasTemas.Find(id);
@@ -32,23 +37,28 @@ namespace Sigulda.WEB.Controllers.captain_america
                 return NotFound();
             }
 
-            return Ok(stundasTema);
+            return Ok(new StundasTemaViewModel {
+                Tema_ID = stundasTema.Tema_ID,
+                Tema = stundasTema.Tema,
+                Piezime = stundasTema.Piezime
+            });
         }
 
         // PUT: api/StundasTemas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutStundasTema(int id, StundasTema stundasTema)
+        public IHttpActionResult PutStundasTema(int id, StundasTemaViewModel stundasTemaModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            var stundasTema = db.StundasTemas.FirstOrDefault(x => x.Tema_ID == stundasTemaModel.Tema_ID);
             if (id != stundasTema.Tema_ID)
             {
                 return BadRequest();
             }
-
+            stundasTema.Tema = stundasTemaModel.Tema;
+            stundasTema.Piezime = stundasTemaModel.Piezime;
             db.Entry(stundasTema).State = EntityState.Modified;
 
             try
@@ -71,14 +81,19 @@ namespace Sigulda.WEB.Controllers.captain_america
         }
 
         // POST: api/StundasTemas
-        [ResponseType(typeof(StundasTema))]
-        public IHttpActionResult PostStundasTema(StundasTema stundasTema)
+        [ResponseType(typeof(StundasTemaViewModel))]
+        public IHttpActionResult PostStundasTema(StundasTemaViewModel stundasTemaModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            var stundasTema = new StundasTema
+            {
+                Tema_ID = stundasTemaModel.Tema_ID,
+                Tema = stundasTemaModel.Tema,
+                Piezime = stundasTemaModel.Piezime
+            };
             db.StundasTemas.Add(stundasTema);
 
             try
@@ -97,11 +112,15 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = stundasTema.Tema_ID }, stundasTema);
+            return CreatedAtRoute("CaptinAmericaApi-StundasTema", new { id = stundasTema.Tema_ID }, new StundasTemaViewModel {
+                Tema_ID = stundasTema.Tema_ID,
+                Tema = stundasTema.Tema,
+                Piezime = stundasTema.Piezime
+            });
         }
 
         // DELETE: api/StundasTemas/5
-        [ResponseType(typeof(StundasTema))]
+        [ResponseType(typeof(StundasTemaViewModel))]
         public IHttpActionResult DeleteStundasTema(int id)
         {
             StundasTema stundasTema = db.StundasTemas.Find(id);
@@ -113,7 +132,11 @@ namespace Sigulda.WEB.Controllers.captain_america
             db.StundasTemas.Remove(stundasTema);
             db.SaveChanges();
 
-            return Ok(stundasTema);
+            return Ok(new StundasTemaViewModel {
+                Tema_ID = stundasTema.Tema_ID,
+                Tema = stundasTema.Tema,
+                Piezime = stundasTema.Piezime
+            });
         }
 
         protected override void Dispose(bool disposing)

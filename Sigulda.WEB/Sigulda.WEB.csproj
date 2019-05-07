@@ -234,6 +234,10 @@
     <Compile Include="Controllers\captain-america\MacibuPrieksmetsController.cs" />
     <Compile Include="Controllers\captain-america\MacibuStundasController.cs" />
     <Compile Include="Controllers\captain-america\StundasTemasController.cs" />
+    <Compile Include="Controllers\captain-america\ViewModels\KlaseViewModel.cs" />
+    <Compile Include="Controllers\captain-america\ViewModels\MacibuPrieksmetsViewModel.cs" />
+    <Compile Include="Controllers\captain-america\ViewModels\MacibuStundaViewModel.cs" />
+    <Compile Include="Controllers\captain-america\ViewModels\StundasTemaViewModel.cs" />
     <Compile Include="Controllers\deadpool\AtbildigaisController.cs" />
     <Compile Include="Controllers\deadpool\ElektroniskasIericesController.cs" />
     <Compile Include="Controllers\deadpool\InventarsController.cs" />

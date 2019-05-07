@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Controllers.captain_america.ViewModels;
 
 namespace Sigulda.WEB.Controllers.captain_america
 {
@@ -17,13 +18,17 @@ namespace Sigulda.WEB.Controllers.captain_america
         private CaptainAmericaModel db = new CaptainAmericaModel();
 
         // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        public IQueryable<KlaseViewModel> GetKlases()
         {
-            return db.Klases.ToList().AsQueryable();
+            return db.Klases.Select(x => new KlaseViewModel {
+                Klase_ID = x.Klase_ID,
+                Grupa = x.Grupa,
+                Klase = x.Klase1
+            });
         }
 
         // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
+        [ResponseType(typeof(KlaseViewModel))]
         public IHttpActionResult GetKlase(int id)
         {
             Klase klase = db.Klases.Find(id);
@@ -32,17 +37,26 @@ namespace Sigulda.WEB.Controllers.captain_america
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(new KlaseViewModel
+            {
+                Klase_ID = klase.Klase_ID,
+                Klase = klase.Klase1,
+                Grupa = klase.Grupa
+            });
         }
 
         // PUT: api/Klases/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutKlase(int id, KlaseViewModel klaseModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var klase = db.Klases.FirstOrDefault(x => x.Klase_ID == klaseModel.Klase_ID);
+            klase.Klase1 = klaseModel.Klase;
+            klase.Grupa = klaseModel.Grupa;
 
             if (id != klase.Klase_ID)
             {
@@ -71,14 +85,19 @@ namespace Sigulda.WEB.Controllers.captain_america
         }
 
         // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        [ResponseType(typeof(KlaseViewModel))]
+        public IHttpActionResult PostKlase(KlaseViewModel klaseModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            var klase = new Klase
+            {
+                Klase_ID = klaseModel.Klase_ID,
+                Grupa = klaseModel.Grupa,
+                Klase1 = klaseModel.Klase
+            };
             db.Klases.Add(klase);
 
             try
@@ -97,11 +116,15 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("CaptinAmericaApi-Klase", new { id = klase.Klase_ID }, new KlaseViewModel {
+                Klase_ID = klase.Klase_ID,
+                Grupa = klase.Grupa,
+                Klase = klase.Klase1
+            });
         }
 
         // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
+        [ResponseType(typeof(KlaseViewModel))]
         public IHttpActionResult DeleteKlase(int id)
         {
             Klase klase = db.Klases.Find(id);
@@ -113,7 +136,12 @@ namespace Sigulda.WEB.Controllers.captain_america
             db.Klases.Remove(klase);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(new KlaseViewModel
+            {
+                Klase_ID = klase.Klase_ID,
+                Klase = klase.Klase1,
+                Grupa = klase.Grupa
+            });
         }
 
         protected override void Dispose(bool disposing)
