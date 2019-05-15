@@ -17,16 +17,16 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/ElektroniskasIerices
-        public IQueryable<ElektroniskasIerices> GetElektroniskas_ierices()
+        public IQueryable<ElektroniskasIericesWolverine> GetElektroniskas_ierices()
         {
             return db.Elektroniskas_ierices;
         }
 
         // GET: api/ElektroniskasIerices/5
-        [ResponseType(typeof(ElektroniskasIerices))]
+        [ResponseType(typeof(ElektroniskasIericesWolverine))]
         public IHttpActionResult GetElektroniskasIerices(string id)
         {
-            ElektroniskasIerices elektroniskasIerices = db.Elektroniskas_ierices.Find(id);
+            ElektroniskasIericesWolverine elektroniskasIerices = db.Elektroniskas_ierices.Find(id);
             if (elektroniskasIerices == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace Sigulda.WEB.Controllers.wolverine
 
         // PUT: api/ElektroniskasIerices/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutElektroniskasIerices(string id, ElektroniskasIerices elektroniskasIerices)
+        public IHttpActionResult PutElektroniskasIerices(string id, ElektroniskasIericesWolverine elektroniskasIerices)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +71,8 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/ElektroniskasIerices
-        [ResponseType(typeof(ElektroniskasIerices))]
-        public IHttpActionResult PostElektroniskasIerices(ElektroniskasIerices elektroniskasIerices)
+        [ResponseType(typeof(ElektroniskasIericesWolverine))]
+        public IHttpActionResult PostElektroniskasIerices(ElektroniskasIericesWolverine elektroniskasIerices)
         {
             if (!ModelState.IsValid)
             {
@@ -101,10 +101,10 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/ElektroniskasIerices/5
-        [ResponseType(typeof(ElektroniskasIerices))]
+        [ResponseType(typeof(ElektroniskasIericesWolverine))]
         public IHttpActionResult DeleteElektroniskasIerices(string id)
         {
-            ElektroniskasIerices elektroniskasIerices = db.Elektroniskas_ierices.Find(id);
+            ElektroniskasIericesWolverine elektroniskasIerices = db.Elektroniskas_ierices.Find(id);
             if (elektroniskasIerices == null)
             {
                 return NotFound();

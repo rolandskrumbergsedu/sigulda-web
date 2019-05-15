@@ -6,7 +6,8 @@ namespace Sigulda.WEB.Contexts.wolverine
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Kabinets
+    [Table("Kabineti")]
+    public partial class Kabineti
     {
         [StringLength(20)]
         public string KabinetaID { get; set; }

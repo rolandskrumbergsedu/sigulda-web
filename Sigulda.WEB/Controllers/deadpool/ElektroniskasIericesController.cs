@@ -33,7 +33,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         [ResponseType(typeof(ElektroniskasIericesViewModel))]
         public IHttpActionResult GetElektroniskasIerices(int id)
         {
-            ElektroniskasIerices elektroniskasIerices = db.ElektroniskasIerices.Find(id);
+            ElektroniskasIericesDeadpool elektroniskasIerices = db.ElektroniskasIerices.Find(id);
             if (elektroniskasIerices == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace Sigulda.WEB.Controllers.deadpool
             {
                 return BadRequest(ModelState);
             }
-            var elektroniskasIerices = new ElektroniskasIerices
+            var elektroniskasIerices = new ElektroniskasIericesDeadpool
             {
                 Datums = elektroniskasIericesModel.Datums,
                 IericesCena = elektroniskasIericesModel.IericesCena,
@@ -137,7 +137,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         [ResponseType(typeof(ElektroniskasIericesViewModel))]
         public IHttpActionResult DeleteElektroniskasIerices(int id)
         {
-            ElektroniskasIerices elektroniskasIerices = db.ElektroniskasIerices.Find(id);
+            ElektroniskasIericesDeadpool elektroniskasIerices = db.ElektroniskasIerices.Find(id);
             if (elektroniskasIerices == null)
             {
                 return NotFound();

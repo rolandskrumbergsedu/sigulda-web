@@ -7,7 +7,7 @@ namespace Sigulda.WEB.Contexts.wolverine
     using System.Data.Entity.Spatial;
 
     [Table("Elektroniskas_ierices")]
-    public partial class ElektroniskasIerices
+    public partial class ElektroniskasIericesWolverine
     {
         [StringLength(50)]
         public string pirksanas_datums { get; set; }

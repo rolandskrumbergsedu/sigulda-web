@@ -13,9 +13,9 @@ namespace Sigulda.WEB.Contexts.deadpool
         }
 
         public virtual DbSet<Atbildigais> Atbildigais { get; set; }
-        public virtual DbSet<ElektroniskasIerices> ElektroniskasIerices { get; set; }
+        public virtual DbSet<ElektroniskasIericesDeadpool> ElektroniskasIerices { get; set; }
         public virtual DbSet<Inventars> Inventars { get; set; }
-        public virtual DbSet<Kabinets> Kabinets { get; set; }
+        public virtual DbSet<KabinetsWolverine> Kabinets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace Sigulda.WEB.Contexts.deadpool
                 .WithOptional(e => e.Atbildigais1)
                 .HasForeignKey(e => e.AtbildigaisID);
 
-            modelBuilder.Entity<ElektroniskasIerices>()
+            modelBuilder.Entity<ElektroniskasIericesDeadpool>()
                 .Property(e => e.IericesCena)
                 .HasPrecision(19, 4);
 
@@ -42,7 +42,7 @@ namespace Sigulda.WEB.Contexts.deadpool
                 .WithOptional(e => e.Inventars1)
                 .HasForeignKey(e => e.InventaraID);
 
-            modelBuilder.Entity<Kabinets>()
+            modelBuilder.Entity<KabinetsWolverine>()
                 .HasMany(e => e.Atbildigais)
                 .WithOptional(e => e.Kabinets)
                 .HasForeignKey(e => e.KabinetaID);

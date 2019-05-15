@@ -11,8 +11,8 @@ namespace Sigulda.WEB.Contexts.deadpool
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Inventars()
         {
-            Kabinets = new HashSet<Kabinets>();
-            Kabinets1 = new HashSet<Kabinets>();
+            Kabinets = new HashSet<KabinetsWolverine>();
+            Kabinets1 = new HashSet<KabinetsWolverine>();
         }
 
         [Key]
@@ -32,9 +32,9 @@ namespace Sigulda.WEB.Contexts.deadpool
         public DateTime Datums { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kabinets> Kabinets { get; set; }
+        public virtual ICollection<KabinetsWolverine> Kabinets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kabinets> Kabinets1 { get; set; }
+        public virtual ICollection<KabinetsWolverine> Kabinets1 { get; set; }
     }
 }

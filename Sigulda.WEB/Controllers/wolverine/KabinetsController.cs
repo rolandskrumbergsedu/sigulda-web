@@ -17,16 +17,16 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/Kabinets
-        public IQueryable<Kabinets> GetKabinets()
+        public IQueryable<Kabineti> GetKabinets()
         {
             return db.Kabinets;
         }
 
         // GET: api/Kabinets/5
-        [ResponseType(typeof(Kabinets))]
+        [ResponseType(typeof(Kabineti))]
         public IHttpActionResult GetKabinets(string id)
         {
-            Kabinets kabinets = db.Kabinets.Find(id);
+            Kabineti kabinets = db.Kabinets.Find(id);
             if (kabinets == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace Sigulda.WEB.Controllers.wolverine
 
         // PUT: api/Kabinets/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKabinets(string id, Kabinets kabinets)
+        public IHttpActionResult PutKabinets(string id, Kabineti kabinets)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +71,8 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/Kabinets
-        [ResponseType(typeof(Kabinets))]
-        public IHttpActionResult PostKabinets(Kabinets kabinets)
+        [ResponseType(typeof(Kabineti))]
+        public IHttpActionResult PostKabinets(Kabineti kabinets)
         {
             if (!ModelState.IsValid)
             {
@@ -101,10 +101,10 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/Kabinets/5
-        [ResponseType(typeof(Kabinets))]
+        [ResponseType(typeof(Kabineti))]
         public IHttpActionResult DeleteKabinets(string id)
         {
-            Kabinets kabinets = db.Kabinets.Find(id);
+            Kabineti kabinets = db.Kabinets.Find(id);
             if (kabinets == null)
             {
                 return NotFound();

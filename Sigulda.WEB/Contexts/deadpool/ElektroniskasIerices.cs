@@ -6,12 +6,13 @@ namespace Sigulda.WEB.Contexts.deadpool
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ElektroniskasIerices
+    [Table("ElektroniskasIerices")]
+    public partial class ElektroniskasIericesDeadpool
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ElektroniskasIerices()
+        public ElektroniskasIericesDeadpool()
         {
-            Kabinets = new HashSet<Kabinets>();
+            Kabinets = new HashSet<KabinetsWolverine>();
         }
 
         [Key]
@@ -31,6 +32,6 @@ namespace Sigulda.WEB.Contexts.deadpool
         public string IericesNosaukums { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kabinets> Kabinets { get; set; }
+        public virtual ICollection<KabinetsWolverine> Kabinets { get; set; }
     }
 }

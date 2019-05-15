@@ -6,10 +6,11 @@ namespace Sigulda.WEB.Contexts.deadpool
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Kabinets
+    [Table("Kabinets")]
+    public partial class KabinetsWolverine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kabinets()
+        public KabinetsWolverine()
         {
             Atbildigais = new HashSet<Atbildigais>();
         }
@@ -29,7 +30,7 @@ namespace Sigulda.WEB.Contexts.deadpool
 
         public virtual Atbildigais Atbildigais1 { get; set; }
 
-        public virtual ElektroniskasIerices ElektroniskasIerices { get; set; }
+        public virtual ElektroniskasIericesDeadpool ElektroniskasIerices { get; set; }
 
         public virtual Inventars Inventars { get; set; }
 

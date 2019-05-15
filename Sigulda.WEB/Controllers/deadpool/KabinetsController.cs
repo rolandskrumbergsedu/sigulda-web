@@ -33,7 +33,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         [ResponseType(typeof(KabinetsViewModel))]
         public IHttpActionResult GetKabinets(int id)
         {
-            Kabinets kabinets = db.Kabinets.Find(id);
+            KabinetsWolverine kabinets = db.Kabinets.Find(id);
             if (kabinets == null)
             {
                 return NotFound();
@@ -99,7 +99,7 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return BadRequest(ModelState);
             }
 
-            var kabinets = new Kabinets
+            var kabinets = new KabinetsWolverine
             {
                 InventaraID = kabinetsModel.InventaraID,
                 Inventars = db.Inventars.FirstOrDefault(x => x.InventaraID == kabinetsModel.InventaraID),
@@ -133,7 +133,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         [ResponseType(typeof(KabinetsViewModel))]
         public IHttpActionResult DeleteKabinets(int id)
         {
-            Kabinets kabinets = db.Kabinets.Find(id);
+            KabinetsWolverine kabinets = db.Kabinets.Find(id);
             if (kabinets == null)
             {
                 return NotFound();

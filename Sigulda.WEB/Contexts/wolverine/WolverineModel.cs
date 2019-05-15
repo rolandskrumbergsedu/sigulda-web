@@ -14,8 +14,8 @@ namespace Sigulda.WEB.Contexts.wolverine
 
         public virtual DbSet<Atbildigie> Atbildigie { get; set; }
         public virtual DbSet<Mebeles> Mebeles { get; set; }
-        public virtual DbSet<ElektroniskasIerices> Elektroniskas_ierices { get; set; }
-        public virtual DbSet<Kabinets> Kabinets { get; set; }
+        public virtual DbSet<ElektroniskasIericesWolverine> Elektroniskas_ierices { get; set; }
+        public virtual DbSet<Kabineti> Kabinets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -11,7 +11,7 @@ namespace Sigulda.WEB.Contexts.deadpool
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Atbildigais()
         {
-            Kabinets1 = new HashSet<Kabinets>();
+            Kabinets1 = new HashSet<KabinetsWolverine>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -27,9 +27,9 @@ namespace Sigulda.WEB.Contexts.deadpool
         [StringLength(50)]
         public string AtbildigaisUzvards { get; set; }
 
-        public virtual Kabinets Kabinets { get; set; }
+        public virtual KabinetsWolverine Kabinets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kabinets> Kabinets1 { get; set; }
+        public virtual ICollection<KabinetsWolverine> Kabinets1 { get; set; }
     }
 }
