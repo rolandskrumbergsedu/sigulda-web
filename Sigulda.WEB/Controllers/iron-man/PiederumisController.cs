@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.iron_man;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.iron_man
 {
-    public class KlasesController : ApiController
+    public class PiederumisController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private IronMan db = new IronMan();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Piederumis
+        public IQueryable<Piederumi> GetPiederumis()
         {
-            return db.Klases;
+            return db.Piederumis;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Piederumis/5
+        [ResponseType(typeof(Piederumi))]
+        public IHttpActionResult GetPiederumi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Piederumi piederumi = db.Piederumis.Find(id);
+            if (piederumi == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(piederumi);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Piederumis/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutPiederumi(int id, Piederumi piederumi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != piederumi.Piederumi_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(piederumi).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!PiederumiExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Piederumis
+        [ResponseType(typeof(Piederumi))]
+        public IHttpActionResult PostPiederumi(Piederumi piederumi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Piederumis.Add(piederumi);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (PiederumiExists(piederumi.Piederumi_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("IronManApi-PiederumisController", new { id = piederumi.Piederumi_ID }, piederumi);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Piederumis/5
+        [ResponseType(typeof(Piederumi))]
+        public IHttpActionResult DeletePiederumi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Piederumi piederumi = db.Piederumis.Find(id);
+            if (piederumi == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Piederumis.Remove(piederumi);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(piederumi);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool PiederumiExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Piederumis.Count(e => e.Piederumi_ID == id) > 0;
         }
     }
 }

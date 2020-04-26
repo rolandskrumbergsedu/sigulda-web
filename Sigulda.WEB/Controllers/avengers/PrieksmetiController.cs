@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.avengers;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.avengers
 {
-    public class KlasesController : ApiController
+    public class PrieksmetiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private AvengersModel db = new AvengersModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Prieksmeti
+        public IQueryable<Prieksmeti> GetPrieksmetis()
         {
-            return db.Klases;
+            return db.Prieksmetis;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Prieksmeti/5
+        [ResponseType(typeof(Prieksmeti))]
+        public IHttpActionResult GetPrieksmeti(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Prieksmeti prieksmeti = db.Prieksmetis.Find(id);
+            if (prieksmeti == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(prieksmeti);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Prieksmeti/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutPrieksmeti(int id, Prieksmeti prieksmeti)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != prieksmeti.PrieksmetaID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(prieksmeti).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!PrieksmetiExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Prieksmeti
+        [ResponseType(typeof(Prieksmeti))]
+        public IHttpActionResult PostPrieksmeti(Prieksmeti prieksmeti)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Prieksmetis.Add(prieksmeti);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (PrieksmetiExists(prieksmeti.PrieksmetaID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("AvengersApi-Prieksmeti", new { id = prieksmeti.PrieksmetaID }, prieksmeti);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Prieksmeti/5
+        [ResponseType(typeof(Prieksmeti))]
+        public IHttpActionResult DeletePrieksmeti(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Prieksmeti prieksmeti = db.Prieksmetis.Find(id);
+            if (prieksmeti == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Prieksmetis.Remove(prieksmeti);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(prieksmeti);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool PrieksmetiExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Prieksmetis.Count(e => e.PrieksmetaID == id) > 0;
         }
     }
 }

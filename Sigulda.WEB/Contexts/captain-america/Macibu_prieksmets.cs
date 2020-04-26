@@ -6,25 +6,20 @@ namespace Sigulda.WEB.Contexts.captain_america
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("StundasTema")]
-    public partial class StundasTema
+    public partial class Macibu_prieksmets
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StundasTema()
+        public Macibu_prieksmets()
         {
             Macibu_stunda = new HashSet<Macibu_stunda>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Tema_ID { get; set; }
+        public int Prieksmets_ID { get; set; }
 
-        [Required]
         [StringLength(50)]
-        public string Tema { get; set; }
-
-        [StringLength(100)]
-        public string Piezime { get; set; }
+        public string Stundas_nosaukums { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Macibu_stunda> Macibu_stunda { get; set; }

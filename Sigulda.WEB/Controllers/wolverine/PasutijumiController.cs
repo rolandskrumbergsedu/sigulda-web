@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.wolverine;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KlasesController : ApiController
+    public class PasutijumiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private WolverineModel db = new WolverineModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Pasutijumi
+        public IQueryable<Pasutijumi> GetPasutijumis()
         {
-            return db.Klases;
+            return db.Pasutijumis;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Pasutijumi/5
+        [ResponseType(typeof(Pasutijumi))]
+        public IHttpActionResult GetPasutijumi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Pasutijumi pasutijumi = db.Pasutijumis.Find(id);
+            if (pasutijumi == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(pasutijumi);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Pasutijumi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutPasutijumi(int id, Pasutijumi pasutijumi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != pasutijumi.Pas_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(pasutijumi).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!PasutijumiExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Pasutijumi
+        [ResponseType(typeof(Pasutijumi))]
+        public IHttpActionResult PostPasutijumi(Pasutijumi pasutijumi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Pasutijumis.Add(pasutijumi);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (PasutijumiExists(pasutijumi.Pas_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("WolverineApi-PasutijumiController", new { id = pasutijumi.Pas_ID }, pasutijumi);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Pasutijumi/5
+        [ResponseType(typeof(Pasutijumi))]
+        public IHttpActionResult DeletePasutijumi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Pasutijumi pasutijumi = db.Pasutijumis.Find(id);
+            if (pasutijumi == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Pasutijumis.Remove(pasutijumi);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(pasutijumi);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool PasutijumiExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Pasutijumis.Count(e => e.Pas_ID == id) > 0;
         }
     }
 }

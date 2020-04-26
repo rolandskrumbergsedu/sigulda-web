@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.deadpool;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.deadpool
 {
-    public class KlasesController : ApiController
+    public class KabinetiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private Deadpool db = new Deadpool();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Kabineti
+        public IQueryable<Kabineti1> GetKabineti1()
         {
-            return db.Klases;
+            return db.Kabineti1;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Kabineti/5
+        [ResponseType(typeof(Kabineti1))]
+        public IHttpActionResult GetKabineti1(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Kabineti1 kabineti1 = db.Kabineti1.Find(id);
+            if (kabineti1 == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(kabineti1);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Kabineti/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutKabineti1(int id, Kabineti1 kabineti1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != kabineti1.kabineta_id)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(kabineti1).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!Kabineti1Exists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Kabineti
+        [ResponseType(typeof(Kabineti1))]
+        public IHttpActionResult PostKabineti1(Kabineti1 kabineti1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Kabineti1.Add(kabineti1);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (Kabineti1Exists(kabineti1.kabineta_id))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("DeadpoolApi-KabinetiController", new { id = kabineti1.kabineta_id }, kabineti1);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Kabineti/5
+        [ResponseType(typeof(Kabineti1))]
+        public IHttpActionResult DeleteKabineti1(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Kabineti1 kabineti1 = db.Kabineti1.Find(id);
+            if (kabineti1 == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Kabineti1.Remove(kabineti1);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(kabineti1);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool Kabineti1Exists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Kabineti1.Count(e => e.kabineta_id == id) > 0;
         }
     }
 }

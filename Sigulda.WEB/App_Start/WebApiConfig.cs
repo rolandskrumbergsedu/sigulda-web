@@ -15,46 +15,33 @@ namespace Sigulda.WEB
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "AvengersApi-Amurs",
-                routeTemplate: "api/avengers/amurs/{id}",
-                defaults: new { controller = "Amurs", id = RouteParameter.Optional }
+                name: "AvengersApi-Iekartas",
+                routeTemplate: "api/avengers/iekarta/{id}",
+                defaults: new { controller = "Iekartas", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-               name: "AvengersApi-Filiments",
-               routeTemplate: "api/avengers/filiments/{id}",
-               defaults: new { controller = "Filiments", id = RouteParameter.Optional }
-           );
-
-            config.Routes.MapHttpRoute(
-               name: "AvengersApi-Knaibles",
-               routeTemplate: "api/avengers/knaibles/{id}",
-               defaults: new { controller = "Knaibles", id = RouteParameter.Optional }
-           );
-
-            config.Routes.MapHttpRoute(
-               name: "AvengersApi-Materialis",
-               routeTemplate: "api/avengers/materiali/{id}",
-               defaults: new { controller = "Materialis", id = RouteParameter.Optional }
-           );
-
-
-            config.Routes.MapHttpRoute(
-                name: "AvengersApi-Skruvjgrieznis",
-                routeTemplate: "api/avengers/skruvjgrieznis/{id}",
-                defaults: new { controller = "Skruvjgrieznis", id = RouteParameter.Optional }
+                name: "AvengersApi-MacibuMateriali",
+                routeTemplate: "api/avengers/macibu-materiali/{id}",
+                defaults: new { controller = "MacibuMateriali", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "AvengersApi-Viles",
-                routeTemplate: "api/avengers/viles/{id}",
-                defaults: new { controller = "Viles", id = RouteParameter.Optional }
+                name: "AvengersApi-Prieksmeti",
+                routeTemplate: "api/avengers/prieksmeti/{id}",
+                defaults: new { controller = "Prieksmeti", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "BatmanApi-AktivaKomponentes",
-                routeTemplate: "api/batman/aktiva-komponente/{id}",
-                defaults: new { controller = "AktivaKomponentes", id = RouteParameter.Optional }
+                name: "BatmanApi-ReaktivasVielas",
+                routeTemplate: "api/batman/reaktivas-vielas/{id}",
+                defaults: new { controller = "ReaktivasVielas", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "BatmanApi-Trauki",
+                routeTemplate: "api/batman/trauki/{id}",
+                defaults: new { controller = "Trauki", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
@@ -118,136 +105,142 @@ namespace Sigulda.WEB
             );
 
             config.Routes.MapHttpRoute(
-                name: "CaptinAmericaApi-Klase",
+                name: "CaptainAmericaApi-KlasesController",
                 routeTemplate: "api/captain-america/klases/{id}",
                 defaults: new { controller = "Klases", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "CaptinAmericaApi-MacibuPrieksmets",
+                name: "CaptainAmericaApi-MacibuPrieksmetsController",
                 routeTemplate: "api/captain-america/macibu-prieksmets/{id}",
                 defaults: new { controller = "MacibuPrieksmets", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "CaptinAmericaApi-MacibuStunda",
+                name: "CaptainAmericaApi-MacibuStundaController",
                 routeTemplate: "api/captain-america/macibu-stunda/{id}",
-                defaults: new { controller = "MacibuStundas", id = RouteParameter.Optional }
+                defaults: new { controller = "MacibuStunda", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "CaptinAmericaApi-StundasTema",
+                name: "CaptainAmericaApi-StundasTemasController",
                 routeTemplate: "api/captain-america/stundas-tema/{id}",
                 defaults: new { controller = "StundasTemas", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeadpoolApi-Atbildigais",
-                routeTemplate: "api/deadpool/atbildigais/{id}",
-                defaults: new { controller = "Atbildigais", id = RouteParameter.Optional }
+                name: "DeadpoolApi-InventaraTipiController",
+                routeTemplate: "api/deadpool/inventara-tipi/{id}",
+                defaults: new { controller = "InventaraTipi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeadpoolApi-ElektroniskasIerices",
-                routeTemplate: "api/deadpool/elektroniskas-ierices/{id}",
-                defaults: new { controller = "ElektroniskasIerices", id = RouteParameter.Optional }
+                name: "DeadpoolApi-KabinetaInventarsController",
+                routeTemplate: "api/deadpool/kabineta-inventars/{id}",
+                defaults: new { controller = "KabinetaInventars", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeadpoolApi-Inventars",
-                routeTemplate: "api/deadpool/inventars/{id}",
-                defaults: new { controller = "Inventars", id = RouteParameter.Optional }
+                name: "DeadpoolApi-KabinetiController",
+                routeTemplate: "api/deadpool/kabineti/{id}",
+                defaults: new { controller = "Kabineti", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeadpoolApi-Kabinets",
-                routeTemplate: "api/deadpool/kabinets/{id}",
+                name: "DeadpoolApi-LietotajiController",
+                routeTemplate: "api/deadpool/lietotaji/{id}",
+                defaults: new { controller = "Lietotaji", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "IronManApi-AtbildīgaisController",
+                routeTemplate: "api/iron-man/atbildigais/{id}",
+                defaults: new { controller = "Atbildīgais", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "IronManApi-IekartasController",
+                routeTemplate: "api/iron-man/iekartas/{id}",
+                defaults: new { controller = "Iekartas2", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "IronManApi-KabinetsController",
+                routeTemplate: "api/iron-man/kabinets/{id}",
                 defaults: new { controller = "Kabinets", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "IronManApi-Iekartas",
-                routeTemplate: "api/iron-man/iekartas/{id}",
-                defaults: new { controller = "Iekartas", id = RouteParameter.Optional }
+                name: "IronManApi-ObjektsController",
+                routeTemplate: "api/iron-man/objekts/{id}",
+                defaults: new { controller = "Objekts", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "IronManApi-Piederumi",
+                name: "IronManApi-PiederumisController",
                 routeTemplate: "api/iron-man/piederumi/{id}",
-                defaults: new { controller = "Piederumi", id = RouteParameter.Optional }
+                defaults: new { controller = "Piederumis", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "IronManApi-Reagenti",
+                name: "IronManApi-ReagentiController",
                 routeTemplate: "api/iron-man/reagenti/{id}",
                 defaults: new { controller = "Reagenti", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "IronManApi-Trauki",
+                name: "IronManApi-TraukiController",
                 routeTemplate: "api/iron-man/trauki/{id}",
                 defaults: new { controller = "Trauki", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Citi",
-                routeTemplate: "api/spiderman/citi/{id}",
-                defaults: new { controller = "Citi", id = RouteParameter.Optional }
+                name: "WolverineApi-KlientiController",
+                routeTemplate: "api/wolverine/klienti/{id}",
+                defaults: new { controller = "Klienti", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Galdi",
-                routeTemplate: "api/spiderman/galdi/{id}",
-                defaults: new { controller = "Galdi", id = RouteParameter.Optional }
+                name: "WolverineApi-LaivaController",
+                routeTemplate: "api/wolverine/laiva/{id}",
+                defaults: new { controller = "Laiva", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Kresli",
-                routeTemplate: "api/spiderman/kresli/{id}",
-                defaults: new { controller = "Kresli", id = RouteParameter.Optional }
+                name: "WolverineApi-LaivuVeidiController",
+                routeTemplate: "api/wolverine/laivu-veidi/{id}",
+                defaults: new { controller = "LaivuVeidi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Monitori",
-                routeTemplate: "api/spiderman/monitori/{id}",
-                defaults: new { controller = "Monitori", id = RouteParameter.Optional }
+                name: "WolverineApi-PasutijumiController",
+                routeTemplate: "api/wolverine/pasutijumi/{id}",
+                defaults: new { controller = "Pasutijumi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Tafeles",
-                routeTemplate: "api/spiderman/tafeles/{id}",
-                defaults: new { controller = "Tafeles", id = RouteParameter.Optional }
+                name: "WolverineApi-PiekabesController",
+                routeTemplate: "api/wolverine/piekabes/{id}",
+                defaults: new { controller = "Piekabes", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "SpidermanApi-Inventars",
-                routeTemplate: "api/spiderman/inventars/{id}",
-                defaults: new { controller = "Inventars2", id = RouteParameter.Optional }
+                name: "WolverineApi-PiekabesVeidsController",
+                routeTemplate: "api/wolverine/piekabes-veids/{id}",
+                defaults: new { controller = "PiekabesVeids", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "WolverineApi-Atbildigie",
-                routeTemplate: "api/wolverine/atbildigie/{id}",
-                defaults: new { controller = "Atbildigie", id = RouteParameter.Optional }
+                name: "WolverineApi-SoferiController",
+                routeTemplate: "api/wolverine/soferi/{id}",
+                defaults: new { controller = "Soferi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-               name: "WolverineApi-ElektroniskasIerices",
-               routeTemplate: "api/wolverine/elektroniskas-ierices/{id}",
-               defaults: new { controller = "ElektroniskasIerices2", id = RouteParameter.Optional }
-           );
-
-            config.Routes.MapHttpRoute(
-               name: "WolverineApi-Kabinets",
-               routeTemplate: "api/wolverine/kabinets/{id}",
-               defaults: new { controller = "Kabinets2", id = RouteParameter.Optional }
-           );
-
-            config.Routes.MapHttpRoute(
-               name: "WolverineApi-Mebeles",
-               routeTemplate: "api/wolverine/mebeles/{id}",
-               defaults: new { controller = "Mebeles", id = RouteParameter.Optional }
-           );
+                name: "WolverineApi-TransportlidzekliController",
+                routeTemplate: "api/wolverine/transportlidzekli/{id}",
+                defaults: new { controller = "Transportlidzekli", id = RouteParameter.Optional }
+            );
         }
     }
 }

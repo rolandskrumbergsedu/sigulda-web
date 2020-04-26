@@ -1,4 +1,4 @@
-namespace Sigulda.WEB.Contexts.captain_america
+namespace Sigulda.WEB.Contexts.wolverine
 {
     using System;
     using System.Collections.Generic;
@@ -6,27 +6,27 @@ namespace Sigulda.WEB.Contexts.captain_america
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("StundasTema")]
-    public partial class StundasTema
+    public partial class Piekabe
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StundasTema()
+        public Piekabe()
         {
-            Macibu_stunda = new HashSet<Macibu_stunda>();
+            Transportlidzeklis = new HashSet<Transportlidzekli>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Tema_ID { get; set; }
+        public int PiekabesID { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Tema { get; set; }
+        [StringLength(30)]
+        public string Nosaukums { get; set; }
 
-        [StringLength(100)]
-        public string Piezime { get; set; }
+        public int? Veids { get; set; }
+
+        public virtual Piekabes_veids Piekabes_veids { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Macibu_stunda> Macibu_stunda { get; set; }
+        public virtual ICollection<Transportlidzekli> Transportlidzeklis { get; set; }
     }
 }

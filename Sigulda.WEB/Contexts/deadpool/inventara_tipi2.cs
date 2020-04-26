@@ -1,4 +1,4 @@
-namespace Sigulda.WEB.Contexts.captain_america
+namespace Sigulda.WEB.Contexts.deadpool
 {
     using System;
     using System.Collections.Generic;
@@ -6,27 +6,26 @@ namespace Sigulda.WEB.Contexts.captain_america
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("StundasTema")]
-    public partial class StundasTema
+    public partial class inventara_tipi2
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StundasTema()
+        public inventara_tipi2()
         {
-            Macibu_stunda = new HashSet<Macibu_stunda>();
+            Kabineta_inventars2 = new HashSet<Kabineta_inventars2>();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Tema_ID { get; set; }
-
-        [Required]
         [StringLength(50)]
-        public string Tema { get; set; }
+        public string tipa_id { get; set; }
 
-        [StringLength(100)]
-        public string Piezime { get; set; }
+        [Column(TypeName = "text")]
+        [Required]
+        public string nosaukums { get; set; }
+
+        [StringLength(200)]
+        public string Apraksts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Macibu_stunda> Macibu_stunda { get; set; }
+        public virtual ICollection<Kabineta_inventars2> Kabineta_inventars2 { get; set; }
     }
 }

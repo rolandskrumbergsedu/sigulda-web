@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.wolverine;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KlasesController : ApiController
+    public class SoferiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private WolverineModel db = new WolverineModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Soferi
+        public IQueryable<Soferi> GetSoferis()
         {
-            return db.Klases;
+            return db.Soferis;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Soferi/5
+        [ResponseType(typeof(Soferi))]
+        public IHttpActionResult GetSoferi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Soferi soferi = db.Soferis.Find(id);
+            if (soferi == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(soferi);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Soferi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutSoferi(int id, Soferi soferi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != soferi.SoferaID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(soferi).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!SoferiExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Soferi
+        [ResponseType(typeof(Soferi))]
+        public IHttpActionResult PostSoferi(Soferi soferi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Soferis.Add(soferi);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (SoferiExists(soferi.SoferaID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("WolverineApi-SoferiController", new { id = soferi.SoferaID }, soferi);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Soferi/5
+        [ResponseType(typeof(Soferi))]
+        public IHttpActionResult DeleteSoferi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Soferi soferi = db.Soferis.Find(id);
+            if (soferi == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Soferis.Remove(soferi);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(soferi);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool SoferiExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Soferis.Count(e => e.SoferaID == id) > 0;
         }
     }
 }

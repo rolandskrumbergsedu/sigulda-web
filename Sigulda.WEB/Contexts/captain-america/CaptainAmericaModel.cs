@@ -13,8 +13,8 @@ namespace Sigulda.WEB.Contexts.captain_america
         }
 
         public virtual DbSet<Klase> Klases { get; set; }
-        public virtual DbSet<MacibuPrieksmets> Macibu_prieksmets { get; set; }
-        public virtual DbSet<MacibuStunda> Macibu_stunda { get; set; }
+        public virtual DbSet<Macibu_prieksmets> Macibu_prieksmets { get; set; }
+        public virtual DbSet<Macibu_stunda> Macibu_stunda { get; set; }
         public virtual DbSet<StundasTema> StundasTemas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -23,15 +23,15 @@ namespace Sigulda.WEB.Contexts.captain_america
                 .Property(e => e.Klase1)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MacibuPrieksmets>()
+            modelBuilder.Entity<Macibu_prieksmets>()
                 .Property(e => e.Stundas_nosaukums)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MacibuStunda>()
+            modelBuilder.Entity<Macibu_stunda>()
                 .Property(e => e.Piezime)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MacibuStunda>()
+            modelBuilder.Entity<Macibu_stunda>()
                 .Property(e => e.Kabineta_nr)
                 .IsUnicode(false);
 

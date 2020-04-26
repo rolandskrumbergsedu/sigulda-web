@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.wolverine;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KlasesController : ApiController
+    public class PiekabesController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private WolverineModel db = new WolverineModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Piekabes
+        public IQueryable<Piekabe> GetPiekabes()
         {
-            return db.Klases;
+            return db.Piekabes;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Piekabes/5
+        [ResponseType(typeof(Piekabe))]
+        public IHttpActionResult GetPiekabe(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Piekabe piekabe = db.Piekabes.Find(id);
+            if (piekabe == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(piekabe);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Piekabes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutPiekabe(int id, Piekabe piekabe)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != piekabe.PiekabesID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(piekabe).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!PiekabeExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Piekabes
+        [ResponseType(typeof(Piekabe))]
+        public IHttpActionResult PostPiekabe(Piekabe piekabe)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Piekabes.Add(piekabe);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (PiekabeExists(piekabe.PiekabesID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("WolverineApi-PiekabesController", new { id = piekabe.PiekabesID }, piekabe);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Piekabes/5
+        [ResponseType(typeof(Piekabe))]
+        public IHttpActionResult DeletePiekabe(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Piekabe piekabe = db.Piekabes.Find(id);
+            if (piekabe == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Piekabes.Remove(piekabe);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(piekabe);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool PiekabeExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Piekabes.Count(e => e.PiekabesID == id) > 0;
         }
     }
 }

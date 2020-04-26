@@ -12,7 +12,7 @@ namespace Sigulda.WEB.Contexts.captain_america
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Klase()
         {
-            Macibu_stunda = new HashSet<MacibuStunda>();
+            Macibu_stunda = new HashSet<Macibu_stunda>();
         }
 
         [Key]
@@ -27,6 +27,6 @@ namespace Sigulda.WEB.Contexts.captain_america
         public int? Grupa { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MacibuStunda> Macibu_stunda { get; set; }
+        public virtual ICollection<Macibu_stunda> Macibu_stunda { get; set; }
     }
 }

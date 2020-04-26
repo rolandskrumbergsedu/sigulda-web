@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.iron_man;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.iron_man
 {
-    public class KlasesController : ApiController
+    public class AtbildīgaisController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private IronMan db = new IronMan();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Atbildīgais
+        public IQueryable<Atbildīgais> GetAtbildīgais()
         {
-            return db.Klases;
+            return db.Atbildīgais;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Atbildīgais/5
+        [ResponseType(typeof(Atbildīgais))]
+        public IHttpActionResult GetAtbildīgais(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Atbildīgais atbildīgais = db.Atbildīgais.Find(id);
+            if (atbildīgais == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(atbildīgais);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Atbildīgais/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutAtbildīgais(int id, Atbildīgais atbildīgais)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != atbildīgais.Atbildīgā_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(atbildīgais).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!AtbildīgaisExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Atbildīgais
+        [ResponseType(typeof(Atbildīgais))]
+        public IHttpActionResult PostAtbildīgais(Atbildīgais atbildīgais)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Atbildīgais.Add(atbildīgais);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (AtbildīgaisExists(atbildīgais.Atbildīgā_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("IronManApi-AtbildīgaisController", new { id = atbildīgais.Atbildīgā_ID }, atbildīgais);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Atbildīgais/5
+        [ResponseType(typeof(Atbildīgais))]
+        public IHttpActionResult DeleteAtbildīgais(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Atbildīgais atbildīgais = db.Atbildīgais.Find(id);
+            if (atbildīgais == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Atbildīgais.Remove(atbildīgais);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(atbildīgais);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool AtbildīgaisExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Atbildīgais.Count(e => e.Atbildīgā_ID == id) > 0;
         }
     }
 }

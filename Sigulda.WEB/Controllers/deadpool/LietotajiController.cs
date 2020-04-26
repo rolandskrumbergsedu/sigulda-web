@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.deadpool;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.deadpool
 {
-    public class KlasesController : ApiController
+    public class LietotajiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private Deadpool db = new Deadpool();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Lietotaji
+        public IQueryable<Lietotaji1> GetLietotaji1()
         {
-            return db.Klases;
+            return db.Lietotaji1;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Lietotaji/5
+        [ResponseType(typeof(Lietotaji1))]
+        public IHttpActionResult GetLietotaji1(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Lietotaji1 lietotaji1 = db.Lietotaji1.Find(id);
+            if (lietotaji1 == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(lietotaji1);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Lietotaji/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutLietotaji1(int id, Lietotaji1 lietotaji1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != lietotaji1.lietotajs_id)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(lietotaji1).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!Lietotaji1Exists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Lietotaji
+        [ResponseType(typeof(Lietotaji1))]
+        public IHttpActionResult PostLietotaji1(Lietotaji1 lietotaji1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Lietotaji1.Add(lietotaji1);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (Lietotaji1Exists(lietotaji1.lietotajs_id))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("DeadpoolApi-LietotajiController", new { id = lietotaji1.lietotajs_id }, lietotaji1);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Lietotaji/5
+        [ResponseType(typeof(Lietotaji1))]
+        public IHttpActionResult DeleteLietotaji1(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Lietotaji1 lietotaji1 = db.Lietotaji1.Find(id);
+            if (lietotaji1 == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Lietotaji1.Remove(lietotaji1);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(lietotaji1);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool Lietotaji1Exists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Lietotaji1.Count(e => e.lietotajs_id == id) > 0;
         }
     }
 }

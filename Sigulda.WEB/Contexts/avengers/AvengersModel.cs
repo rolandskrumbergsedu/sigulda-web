@@ -12,74 +12,33 @@ namespace Sigulda.WEB.Contexts.avengers
         {
         }
 
-        public virtual DbSet<Amurs> Amurs { get; set; }
-        public virtual DbSet<Filiments> Filiments { get; set; }
-        public virtual DbSet<Knaibles> Knaibles { get; set; }
-        public virtual DbSet<Materiali> Materials { get; set; }
-        public virtual DbSet<Skruvjgriezni> Skruvjgrieznis { get; set; }
-        public virtual DbSet<Viles> Viles { get; set; }
+        public virtual DbSet<Iekarta> Iekartas { get; set; }
+        public virtual DbSet<Macibu_Materiali> Macibu_Materialis { get; set; }
+        public virtual DbSet<Prieksmeti> Prieksmetis { get; set; }
+        public virtual DbSet<Reaktivas_Viela> Reaktivas_Vielas { get; set; }
+        public virtual DbSet<Trauki> Traukis { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Amurs>()
-                .Property(e => e.ipasas_iezimes)
-                .IsUnicode(false);
+            modelBuilder.Entity<Iekarta>()
+                .Property(e => e.Skaits)
+                .HasPrecision(3, 0);
 
-            modelBuilder.Entity<Amurs>()
-                .Property(e => e.Panema)
-                .IsFixedLength();
+            modelBuilder.Entity<Macibu_Materiali>()
+                .Property(e => e.Skaits)
+                .HasPrecision(3, 0);
 
-            modelBuilder.Entity<Filiments>()
-                .Property(e => e.krasa)
-                .IsFixedLength();
+            modelBuilder.Entity<Prieksmeti>()
+                .Property(e => e.Skaits)
+                .HasPrecision(3, 0);
 
-            modelBuilder.Entity<Filiments>()
-                .Property(e => e.materials)
-                .IsFixedLength();
+            modelBuilder.Entity<Reaktivas_Viela>()
+                .Property(e => e.Skaits)
+                .HasPrecision(3, 0);
 
-            modelBuilder.Entity<Knaibles>()
-                .Property(e => e.Veids)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Knaibles>()
-                .Property(e => e.ipasas_iezimes)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Knaibles>()
-                .Property(e => e.Panema)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Materiali>()
-                .Property(e => e.Materials)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Materiali>()
-                .Property(e => e.iezimes)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Skruvjgriezni>()
-                .Property(e => e.gals)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Skruvjgriezni>()
-                .Property(e => e.ipasas_iezimes)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Skruvjgriezni>()
-                .Property(e => e.Panema)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Viles>()
-                .Property(e => e.Veids)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Viles>()
-                .Property(e => e.ipasas_iezimes)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Viles>()
-                .Property(e => e.Panema)
-                .IsFixedLength();
+            modelBuilder.Entity<Trauki>()
+                .Property(e => e.Skaits)
+                .HasPrecision(3, 0);
         }
     }
 }

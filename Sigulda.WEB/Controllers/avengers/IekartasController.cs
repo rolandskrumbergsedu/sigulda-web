@@ -5,51 +5,50 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.avengers;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.avengers
 {
-    public class KlasesController : ApiController
+    public class IekartasController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private AvengersModel db = new AvengersModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Iekartas
+        public IQueryable<Iekarta> GetIekartas()
         {
-            return db.Klases;
+            return db.Iekartas;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Iekartas/5
+        [ResponseType(typeof(Iekarta))]
+        public IHttpActionResult GetIekarta(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Iekarta iekarta = db.Iekartas.Find(id);
+            if (iekarta == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(iekarta);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Iekartas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutIekarta(int id, Iekarta iekarta)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != iekarta.IekartasID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(iekarta).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +56,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!IekartaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +69,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Iekartas
+        [ResponseType(typeof(Iekarta))]
+        public IHttpActionResult PostIekarta(Iekarta iekarta)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Iekartas.Add(iekarta);
 
             try
             {
@@ -87,7 +86,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (IekartaExists(iekarta.IekartasID))
                 {
                     return Conflict();
                 }
@@ -97,23 +96,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("AvengersApi-Iekartas", new { id = iekarta.IekartasID }, iekarta);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Iekartas/5
+        [ResponseType(typeof(Iekarta))]
+        public IHttpActionResult DeleteIekarta(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Iekarta iekarta = db.Iekartas.Find(id);
+            if (iekarta == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Iekartas.Remove(iekarta);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(iekarta);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +124,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool IekartaExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Iekartas.Count(e => e.IekartasID == id) > 0;
         }
     }
 }

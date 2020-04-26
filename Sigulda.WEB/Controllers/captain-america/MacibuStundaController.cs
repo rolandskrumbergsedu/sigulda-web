@@ -12,44 +12,44 @@ using Sigulda.WEB.Contexts.captain_america;
 
 namespace Sigulda.WEB.Controllers.captain_america
 {
-    public class MacibuPrieksmetsController : ApiController
+    public class MacibuStundaController : ApiController
     {
         private CaptainAmericaModel db = new CaptainAmericaModel();
 
-        // GET: api/MacibuPrieksmets
-        public IQueryable<Macibu_prieksmets> GetMacibu_prieksmets()
+        // GET: api/MacibuStunda
+        public IQueryable<Macibu_stunda> GetMacibu_stunda()
         {
-            return db.Macibu_prieksmets;
+            return db.Macibu_stunda;
         }
 
-        // GET: api/MacibuPrieksmets/5
-        [ResponseType(typeof(Macibu_prieksmets))]
-        public IHttpActionResult GetMacibu_prieksmets(int id)
+        // GET: api/MacibuStunda/5
+        [ResponseType(typeof(Macibu_stunda))]
+        public IHttpActionResult GetMacibu_stunda(int id)
         {
-            Macibu_prieksmets macibu_prieksmets = db.Macibu_prieksmets.Find(id);
-            if (macibu_prieksmets == null)
+            Macibu_stunda macibu_stunda = db.Macibu_stunda.Find(id);
+            if (macibu_stunda == null)
             {
                 return NotFound();
             }
 
-            return Ok(macibu_prieksmets);
+            return Ok(macibu_stunda);
         }
 
-        // PUT: api/MacibuPrieksmets/5
+        // PUT: api/MacibuStunda/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMacibu_prieksmets(int id, Macibu_prieksmets macibu_prieksmets)
+        public IHttpActionResult PutMacibu_stunda(int id, Macibu_stunda macibu_stunda)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != macibu_prieksmets.Prieksmets_ID)
+            if (id != macibu_stunda.Stunda_ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(macibu_prieksmets).State = EntityState.Modified;
+            db.Entry(macibu_stunda).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Macibu_prieksmetsExists(id))
+                if (!Macibu_stundaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/MacibuPrieksmets
-        [ResponseType(typeof(Macibu_prieksmets))]
-        public IHttpActionResult PostMacibu_prieksmets(Macibu_prieksmets macibu_prieksmets)
+        // POST: api/MacibuStunda
+        [ResponseType(typeof(Macibu_stunda))]
+        public IHttpActionResult PostMacibu_stunda(Macibu_stunda macibu_stunda)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Macibu_prieksmets.Add(macibu_prieksmets);
+            db.Macibu_stunda.Add(macibu_stunda);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (Macibu_prieksmetsExists(macibu_prieksmets.Prieksmets_ID))
+                if (Macibu_stundaExists(macibu_stunda.Stunda_ID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-MacibuPrieksmetsController", new { id = macibu_prieksmets.Prieksmets_ID }, macibu_prieksmets);
+            return CreatedAtRoute("CaptainAmericaApi-MacibuStundaController", new { id = macibu_stunda.Stunda_ID }, macibu_stunda);
         }
 
-        // DELETE: api/MacibuPrieksmets/5
-        [ResponseType(typeof(Macibu_prieksmets))]
-        public IHttpActionResult DeleteMacibu_prieksmets(int id)
+        // DELETE: api/MacibuStunda/5
+        [ResponseType(typeof(Macibu_stunda))]
+        public IHttpActionResult DeleteMacibu_stunda(int id)
         {
-            Macibu_prieksmets macibu_prieksmets = db.Macibu_prieksmets.Find(id);
-            if (macibu_prieksmets == null)
+            Macibu_stunda macibu_stunda = db.Macibu_stunda.Find(id);
+            if (macibu_stunda == null)
             {
                 return NotFound();
             }
 
-            db.Macibu_prieksmets.Remove(macibu_prieksmets);
+            db.Macibu_stunda.Remove(macibu_stunda);
             db.SaveChanges();
 
-            return Ok(macibu_prieksmets);
+            return Ok(macibu_stunda);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool Macibu_prieksmetsExists(int id)
+        private bool Macibu_stundaExists(int id)
         {
-            return db.Macibu_prieksmets.Count(e => e.Prieksmets_ID == id) > 0;
+            return db.Macibu_stunda.Count(e => e.Stunda_ID == id) > 0;
         }
     }
 }

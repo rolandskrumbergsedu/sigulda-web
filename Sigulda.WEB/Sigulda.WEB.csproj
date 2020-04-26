@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,21 +47,73 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.7\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -77,43 +130,13 @@
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.WebRequest">
-    </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -125,20 +148,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Diagnostics.DiagnosticSource">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
-      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -168,13 +181,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Contexts\avengers\Amurs.cs" />
     <Compile Include="Contexts\avengers\AvengersModel.cs" />
-    <Compile Include="Contexts\avengers\Filiments.cs" />
-    <Compile Include="Contexts\avengers\Knaibles.cs" />
-    <Compile Include="Contexts\avengers\Materiali.cs" />
-    <Compile Include="Contexts\avengers\Skruvjgriezni.cs" />
-    <Compile Include="Contexts\avengers\Viles.cs" />
+    <Compile Include="Contexts\avengers\Iekarta.cs" />
+    <Compile Include="Contexts\avengers\Macibu_Materiali.cs" />
+    <Compile Include="Contexts\avengers\Prieksmeti.cs" />
+    <Compile Include="Contexts\avengers\Reaktivas_Viela.cs" />
+    <Compile Include="Contexts\avengers\Trauki.cs" />
     <Compile Include="Contexts\batman\AktivaKomponente.cs" />
     <Compile Include="Contexts\batman\Akumulators.cs" />
     <Compile Include="Contexts\batman\Baterija.cs" />
@@ -189,37 +201,36 @@
     <Compile Include="Contexts\batman\Vadi.cs" />
     <Compile Include="Contexts\captain-america\CaptainAmericaModel.cs" />
     <Compile Include="Contexts\captain-america\Klase.cs" />
-    <Compile Include="Contexts\captain-america\MacibuPrieksmets.cs" />
-    <Compile Include="Contexts\captain-america\MacibuStunda.cs" />
+    <Compile Include="Contexts\captain-america\Macibu_prieksmets.cs" />
+    <Compile Include="Contexts\captain-america\Macibu_stunda.cs" />
     <Compile Include="Contexts\captain-america\StundasTema.cs" />
-    <Compile Include="Contexts\deadpool\Atbildigais.cs" />
-    <Compile Include="Contexts\deadpool\DeadPoolModel.cs" />
-    <Compile Include="Contexts\deadpool\ElektroniskasIerices.cs" />
-    <Compile Include="Contexts\deadpool\Inventars.cs" />
-    <Compile Include="Contexts\deadpool\Kabinets.cs" />
+    <Compile Include="Contexts\deadpool\Deadpool.cs" />
+    <Compile Include="Contexts\deadpool\inventara_tipi2.cs" />
+    <Compile Include="Contexts\deadpool\Kabineta_inventars2.cs" />
+    <Compile Include="Contexts\deadpool\Kabineti1.cs" />
+    <Compile Include="Contexts\deadpool\Lietotaji1.cs" />
+    <Compile Include="Contexts\iron-man\Atbildīgais.cs" />
     <Compile Include="Contexts\iron-man\iekarta.cs" />
-    <Compile Include="Contexts\iron-man\IronManModel.cs" />
+    <Compile Include="Contexts\iron-man\IronMan.cs" />
+    <Compile Include="Contexts\iron-man\Kabinet.cs" />
+    <Compile Include="Contexts\iron-man\Objekt.cs" />
     <Compile Include="Contexts\iron-man\Piederumi.cs" />
     <Compile Include="Contexts\iron-man\Reagenti.cs" />
     <Compile Include="Contexts\iron-man\Trauki.cs" />
-    <Compile Include="Contexts\spiderman\Citi.cs" />
-    <Compile Include="Contexts\spiderman\Galdi.cs" />
-    <Compile Include="Contexts\spiderman\Inventars.cs" />
-    <Compile Include="Contexts\spiderman\Kresli.cs" />
-    <Compile Include="Contexts\spiderman\Monitori.cs" />
-    <Compile Include="Contexts\spiderman\SpidermanModel.cs" />
-    <Compile Include="Contexts\spiderman\Tafeles.cs" />
-    <Compile Include="Contexts\wolverine\Atbildigie.cs" />
-    <Compile Include="Contexts\wolverine\ElektroniskasIerices.cs" />
-    <Compile Include="Contexts\wolverine\Kabinets.cs" />
-    <Compile Include="Contexts\wolverine\Mebeles.cs" />
+    <Compile Include="Contexts\wolverine\Klienti.cs" />
+    <Compile Include="Contexts\wolverine\Laiva.cs" />
+    <Compile Include="Contexts\wolverine\Laivu_veidi.cs" />
+    <Compile Include="Contexts\wolverine\Pasutijumi.cs" />
+    <Compile Include="Contexts\wolverine\Piekabe.cs" />
+    <Compile Include="Contexts\wolverine\Piekabes_veids.cs" />
+    <Compile Include="Contexts\wolverine\Soferi.cs" />
+    <Compile Include="Contexts\wolverine\Transportlidzekli.cs" />
     <Compile Include="Contexts\wolverine\WolverineModel.cs" />
-    <Compile Include="Controllers\avengers\AmursController.cs" />
-    <Compile Include="Controllers\avengers\FilimentsController.cs" />
-    <Compile Include="Controllers\avengers\KnaiblesController.cs" />
-    <Compile Include="Controllers\avengers\MaterialisController.cs" />
-    <Compile Include="Controllers\avengers\SkruvjgrieznisController.cs" />
-    <Compile Include="Controllers\avengers\VilesController.cs" />
+    <Compile Include="Controllers\avengers\IekartasController.cs" />
+    <Compile Include="Controllers\avengers\MacibuMaterialiController.cs" />
+    <Compile Include="Controllers\avengers\PrieksmetiController.cs" />
+    <Compile Include="Controllers\avengers\ReaktivasVielasController.cs" />
+    <Compile Include="Controllers\avengers\TraukiController.cs" />
     <Compile Include="Controllers\batman\AktivaKomponentesController.cs" />
     <Compile Include="Controllers\batman\AkumulatorsController.cs" />
     <Compile Include="Controllers\batman\BaterijasController.cs" />
@@ -233,36 +244,29 @@
     <Compile Include="Controllers\batman\VadisController.cs" />
     <Compile Include="Controllers\captain-america\KlasesController.cs" />
     <Compile Include="Controllers\captain-america\MacibuPrieksmetsController.cs" />
-    <Compile Include="Controllers\captain-america\MacibuStundasController.cs" />
+    <Compile Include="Controllers\captain-america\MacibuStundaController.cs" />
     <Compile Include="Controllers\captain-america\StundasTemasController.cs" />
-    <Compile Include="Controllers\captain-america\ViewModels\KlaseViewModel.cs" />
-    <Compile Include="Controllers\captain-america\ViewModels\MacibuPrieksmetsViewModel.cs" />
-    <Compile Include="Controllers\captain-america\ViewModels\MacibuStundaViewModel.cs" />
-    <Compile Include="Controllers\captain-america\ViewModels\StundasTemaViewModel.cs" />
-    <Compile Include="Controllers\deadpool\AtbildigaisController.cs" />
-    <Compile Include="Controllers\deadpool\ElektroniskasIericesController.cs" />
-    <Compile Include="Controllers\deadpool\InventarsController.cs" />
-    <Compile Include="Controllers\deadpool\KabinetsController.cs" />
-    <Compile Include="Controllers\deadpool\ViewModels\AtbildigaisViewModel.cs" />
-    <Compile Include="Controllers\deadpool\ViewModels\ElektroniskasIericesViewModel.cs" />
-    <Compile Include="Controllers\deadpool\ViewModels\InventarsViewModel.cs" />
-    <Compile Include="Controllers\deadpool\ViewModels\KabinetsViewModel.cs" />
+    <Compile Include="Controllers\deadpool\InventaraTipiController.cs" />
+    <Compile Include="Controllers\deadpool\KabinetaInventarsController.cs" />
+    <Compile Include="Controllers\deadpool\KabinetiController.cs" />
+    <Compile Include="Controllers\deadpool\LietotajiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\iron-man\IekartasController.cs" />
-    <Compile Include="Controllers\iron-man\PiederumiController.cs" />
+    <Compile Include="Controllers\iron-man\AtbildīgaisController.cs" />
+    <Compile Include="Controllers\iron-man\Iekartas2Controller.cs" />
+    <Compile Include="Controllers\iron-man\KabinetsController.cs" />
+    <Compile Include="Controllers\iron-man\ObjektsController.cs" />
+    <Compile Include="Controllers\iron-man\PiederumisController.cs" />
     <Compile Include="Controllers\iron-man\ReagentiController.cs" />
     <Compile Include="Controllers\iron-man\TraukiController.cs" />
-    <Compile Include="Controllers\spiderman\CitiController.cs" />
-    <Compile Include="Controllers\spiderman\GaldiController.cs" />
-    <Compile Include="Controllers\spiderman\Inventars2Controller.cs" />
-    <Compile Include="Controllers\spiderman\KresliController.cs" />
-    <Compile Include="Controllers\spiderman\MonitoriController.cs" />
-    <Compile Include="Controllers\spiderman\TafelesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Controllers\wolverine\AtbildigieController.cs" />
-    <Compile Include="Controllers\wolverine\ElektroniskasIericesController.cs" />
-    <Compile Include="Controllers\wolverine\KabinetsController.cs" />
-    <Compile Include="Controllers\wolverine\MebelesController.cs" />
+    <Compile Include="Controllers\wolverine\KlientiController.cs" />
+    <Compile Include="Controllers\wolverine\LaivaController.cs" />
+    <Compile Include="Controllers\wolverine\LaivuVeidiController.cs" />
+    <Compile Include="Controllers\wolverine\PasutijumiController.cs" />
+    <Compile Include="Controllers\wolverine\PiekabesController.cs" />
+    <Compile Include="Controllers\wolverine\PiekabesVeidsController.cs" />
+    <Compile Include="Controllers\wolverine\SoferiController.cs" />
+    <Compile Include="Controllers\wolverine\TransportlidzekliController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -323,6 +327,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Contexts\spiderman\" />
+    <Folder Include="Controllers\spiderman\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -386,8 +392,11 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

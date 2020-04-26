@@ -14,7 +14,7 @@ namespace Sigulda.WEB.Controllers.iron_man
 {
     public class TraukiController : ApiController
     {
-        private IronManModel db = new IronManModel();
+        private IronMan db = new IronMan();
 
         // GET: api/Trauki
         public IQueryable<Trauki> GetTraukis()
@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("IronManApi-Trauki", new { id = trauki.Trauki_ID }, trauki);
+            return CreatedAtRoute("DefaultApi", new { id = trauki.Trauki_ID }, trauki);
         }
 
         // DELETE: api/Trauki/5

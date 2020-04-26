@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.wolverine;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KlasesController : ApiController
+    public class LaivaController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private WolverineModel db = new WolverineModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/Laiva
+        public IQueryable<Laiva> GetLaivas()
         {
-            return db.Klases;
+            return db.Laivas;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/Laiva/5
+        [ResponseType(typeof(Laiva))]
+        public IHttpActionResult GetLaiva(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Laiva laiva = db.Laivas.Find(id);
+            if (laiva == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(laiva);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/Laiva/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutLaiva(int id, Laiva laiva)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != laiva.LaivasID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(laiva).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!LaivaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/Laiva
+        [ResponseType(typeof(Laiva))]
+        public IHttpActionResult PostLaiva(Laiva laiva)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Laivas.Add(laiva);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (LaivaExists(laiva.LaivasID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("WolverineApi-LaivaController", new { id = laiva.LaivasID }, laiva);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/Laiva/5
+        [ResponseType(typeof(Laiva))]
+        public IHttpActionResult DeleteLaiva(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Laiva laiva = db.Laivas.Find(id);
+            if (laiva == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Laivas.Remove(laiva);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(laiva);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool LaivaExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Laivas.Count(e => e.LaivasID == id) > 0;
         }
     }
 }

@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.captain_america;
+using Sigulda.WEB.Contexts.wolverine;
 
-namespace Sigulda.WEB.Controllers.captain_america
+namespace Sigulda.WEB.Controllers.wolverine
 {
-    public class KlasesController : ApiController
+    public class LaivuVeidiController : ApiController
     {
-        private CaptainAmericaModel db = new CaptainAmericaModel();
+        private WolverineModel db = new WolverineModel();
 
-        // GET: api/Klases
-        public IQueryable<Klase> GetKlases()
+        // GET: api/LaivuVeidi
+        public IQueryable<Laivu_veidi> GetLaivu_veidi()
         {
-            return db.Klases;
+            return db.Laivu_veidi;
         }
 
-        // GET: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult GetKlase(int id)
+        // GET: api/LaivuVeidi/5
+        [ResponseType(typeof(Laivu_veidi))]
+        public IHttpActionResult GetLaivu_veidi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Laivu_veidi laivu_veidi = db.Laivu_veidi.Find(id);
+            if (laivu_veidi == null)
             {
                 return NotFound();
             }
 
-            return Ok(klase);
+            return Ok(laivu_veidi);
         }
 
-        // PUT: api/Klases/5
+        // PUT: api/LaivuVeidi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlase(int id, Klase klase)
+        public IHttpActionResult PutLaivu_veidi(int id, Laivu_veidi laivu_veidi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != klase.Klase_ID)
+            if (id != laivu_veidi.LVID)
             {
                 return BadRequest();
             }
 
-            db.Entry(klase).State = EntityState.Modified;
+            db.Entry(laivu_veidi).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlaseExists(id))
+                if (!Laivu_veidiExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace Sigulda.WEB.Controllers.captain_america
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Klases
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult PostKlase(Klase klase)
+        // POST: api/LaivuVeidi
+        [ResponseType(typeof(Laivu_veidi))]
+        public IHttpActionResult PostLaivu_veidi(Laivu_veidi laivu_veidi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Klases.Add(klase);
+            db.Laivu_veidi.Add(laivu_veidi);
 
             try
             {
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.captain_america
             }
             catch (DbUpdateException)
             {
-                if (KlaseExists(klase.Klase_ID))
+                if (Laivu_veidiExists(laivu_veidi.LVID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace Sigulda.WEB.Controllers.captain_america
                 }
             }
 
-            return CreatedAtRoute("CaptainAmericaApi-KlasesController", new { id = klase.Klase_ID }, klase);
+            return CreatedAtRoute("WolverineApi-LaivuVeidiController", new { id = laivu_veidi.LVID }, laivu_veidi);
         }
 
-        // DELETE: api/Klases/5
-        [ResponseType(typeof(Klase))]
-        public IHttpActionResult DeleteKlase(int id)
+        // DELETE: api/LaivuVeidi/5
+        [ResponseType(typeof(Laivu_veidi))]
+        public IHttpActionResult DeleteLaivu_veidi(int id)
         {
-            Klase klase = db.Klases.Find(id);
-            if (klase == null)
+            Laivu_veidi laivu_veidi = db.Laivu_veidi.Find(id);
+            if (laivu_veidi == null)
             {
                 return NotFound();
             }
 
-            db.Klases.Remove(klase);
+            db.Laivu_veidi.Remove(laivu_veidi);
             db.SaveChanges();
 
-            return Ok(klase);
+            return Ok(laivu_veidi);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace Sigulda.WEB.Controllers.captain_america
             base.Dispose(disposing);
         }
 
-        private bool KlaseExists(int id)
+        private bool Laivu_veidiExists(int id)
         {
-            return db.Klases.Count(e => e.Klase_ID == id) > 0;
+            return db.Laivu_veidi.Count(e => e.LVID == id) > 0;
         }
     }
 }
