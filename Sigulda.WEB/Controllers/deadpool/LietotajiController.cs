@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,21 @@ namespace Sigulda.WEB.Controllers.deadpool
         private Deadpool db = new Deadpool();
 
         // GET: api/Lietotaji
-        public IQueryable<Lietotaji1> GetLietotaji1()
+        public IQueryable<LietotajsViewModel> GetLietotaji1()
         {
-            return db.Lietotaji1;
+            return db.Lietotaji1.Select(_ => new LietotajsViewModel
+            {
+                epasts = _.epasts,
+                parole = _.parole,
+                personas_kods = _.personas_kods,
+                skolotajs = _.skolotajs,
+                uzvards = _.uzvards,
+                vards = _.vards
+            });
         }
 
         // GET: api/Lietotaji/5
-        [ResponseType(typeof(Lietotaji1))]
+        [ResponseType(typeof(LietotajsViewModel))]
         public IHttpActionResult GetLietotaji1(int id)
         {
             Lietotaji1 lietotaji1 = db.Lietotaji1.Find(id);
@@ -32,12 +41,20 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(lietotaji1);
+            return Ok(new LietotajsViewModel
+            {
+                epasts = lietotaji1.epasts,
+                parole = lietotaji1.parole,
+                personas_kods = lietotaji1.personas_kods,
+                skolotajs = lietotaji1.skolotajs,
+                uzvards = lietotaji1.uzvards,
+                vards = lietotaji1.vards
+            });
         }
 
         // PUT: api/Lietotaji/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLietotaji1(int id, Lietotaji1 lietotaji1)
+        public IHttpActionResult PutLietotaji1(int id, LietotajsViewModel lietotaji1)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +66,22 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return BadRequest();
             }
 
-            db.Entry(lietotaji1).State = EntityState.Modified;
+            var dbLietotajs = db.Lietotaji1.FirstOrDefault(_ => _.lietotajs_id == lietotaji1.lietotajs_id);
+
+            if (dbLietotajs == null)
+            {
+                return NotFound();
+            }
+
+            dbLietotajs.vards = lietotaji1.vards;
+            dbLietotajs.uzvards = lietotaji1.uzvards;
+            dbLietotajs.skolotajs = lietotaji1.skolotajs;
+            dbLietotajs.personas_kods = lietotaji1.personas_kods;
+            dbLietotajs.parole = lietotaji1.parole;
+            dbLietotajs.epasts = lietotaji1.epasts;
+
+            db.Entry(dbLietotajs).State = EntityState.Modified;
+            
 
             try
             {
@@ -71,15 +103,26 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/Lietotaji
-        [ResponseType(typeof(Lietotaji1))]
-        public IHttpActionResult PostLietotaji1(Lietotaji1 lietotaji1)
+        [ResponseType(typeof(LietotajsViewModel))]
+        public IHttpActionResult PostLietotaji1(LietotajsViewModel lietotaji1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Lietotaji1.Add(lietotaji1);
+            var lietotajs = new Lietotaji1
+            {
+                lietotajs_id = lietotaji1.lietotajs_id,
+                epasts = lietotaji1.epasts,
+                vards = lietotaji1.vards,
+                uzvards = lietotaji1.uzvards,
+                parole = lietotaji1.parole,
+                personas_kods = lietotaji1.personas_kods,
+                skolotajs = lietotaji1.skolotajs
+            };
+
+            db.Lietotaji1.Add(lietotajs);
 
             try
             {
@@ -87,7 +130,7 @@ namespace Sigulda.WEB.Controllers.deadpool
             }
             catch (DbUpdateException)
             {
-                if (Lietotaji1Exists(lietotaji1.lietotajs_id))
+                if (Lietotaji1Exists(lietotajs.lietotajs_id))
                 {
                     return Conflict();
                 }
@@ -101,7 +144,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // DELETE: api/Lietotaji/5
-        [ResponseType(typeof(Lietotaji1))]
+        [ResponseType(typeof(LietotajsViewModel))]
         public IHttpActionResult DeleteLietotaji1(int id)
         {
             Lietotaji1 lietotaji1 = db.Lietotaji1.Find(id);
@@ -113,7 +156,15 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Lietotaji1.Remove(lietotaji1);
             db.SaveChanges();
 
-            return Ok(lietotaji1);
+            return Ok(new LietotajsViewModel
+            {
+                epasts = lietotaji1.epasts,
+                parole = lietotaji1.parole,
+                personas_kods = lietotaji1.personas_kods,
+                skolotajs = lietotaji1.skolotajs,
+                uzvards = lietotaji1.uzvards,
+                vards = lietotaji1.vards
+            });
         }
 
         protected override void Dispose(bool disposing)

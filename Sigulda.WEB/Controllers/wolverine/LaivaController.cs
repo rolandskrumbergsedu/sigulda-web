@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.wolverine;
+using Sigulda.WEB.Controllers.wolverine.ViewModels;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/Laiva
-        public IQueryable<Laiva> GetLaivas()
+        public IQueryable<LaivaViewModel> GetLaivas()
         {
-            return db.Laivas;
+            return db.Laivas.Select(laiva => new LaivaViewModel
+            {
+                LaivasID = laiva.LaivasID,
+                Nosaukums = laiva.Nosaukums,
+                Skaits = laiva.Skaits,
+                Veids = laiva.Veids
+            });
         }
 
         // GET: api/Laiva/5
-        [ResponseType(typeof(Laiva))]
+        [ResponseType(typeof(LaivaViewModel))]
         public IHttpActionResult GetLaiva(int id)
         {
             Laiva laiva = db.Laivas.Find(id);
@@ -32,12 +39,18 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return NotFound();
             }
 
-            return Ok(laiva);
+            return Ok(new LaivaViewModel
+            {
+                LaivasID = laiva.LaivasID,
+                Nosaukums = laiva.Nosaukums,
+                Skaits = laiva.Skaits,
+                Veids = laiva.Veids
+            });
         }
 
         // PUT: api/Laiva/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLaiva(int id, Laiva laiva)
+        public IHttpActionResult PutLaiva(int id, LaivaViewModel laiva)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +62,17 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return BadRequest();
             }
 
-            db.Entry(laiva).State = EntityState.Modified;
+            var entry = db.Laivas.FirstOrDefault(_ => _.LaivasID == laiva.LaivasID);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            entry.Nosaukums = laiva.Nosaukums;
+            entry.Veids = laiva.Veids;
+            entry.Skaits = laiva.Skaits;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +94,21 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/Laiva
-        [ResponseType(typeof(Laiva))]
-        public IHttpActionResult PostLaiva(Laiva laiva)
+        [ResponseType(typeof(LaivaViewModel))]
+        public IHttpActionResult PostLaiva(LaivaViewModel laiva)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Laivas.Add(laiva);
+            db.Laivas.Add(new Laiva
+            {
+                LaivasID = laiva.LaivasID,
+                Nosaukums = laiva.Nosaukums,
+                Veids = laiva.Veids,
+                Skaits = laiva.Skaits
+            });
 
             try
             {
@@ -101,7 +130,7 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/Laiva/5
-        [ResponseType(typeof(Laiva))]
+        [ResponseType(typeof(LaivaViewModel))]
         public IHttpActionResult DeleteLaiva(int id)
         {
             Laiva laiva = db.Laivas.Find(id);
@@ -113,7 +142,13 @@ namespace Sigulda.WEB.Controllers.wolverine
             db.Laivas.Remove(laiva);
             db.SaveChanges();
 
-            return Ok(laiva);
+            return Ok(new LaivaViewModel
+            {
+                LaivasID = laiva.LaivasID,
+                Nosaukums = laiva.Nosaukums,
+                Skaits = laiva.Skaits,
+                Veids = laiva.Veids
+            });
         }
 
         protected override void Dispose(bool disposing)

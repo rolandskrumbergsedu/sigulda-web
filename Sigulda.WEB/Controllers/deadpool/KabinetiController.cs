@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.deadpool
         private Deadpool db = new Deadpool();
 
         // GET: api/Kabineti
-        public IQueryable<Kabineti1> GetKabineti1()
+        public IQueryable<KabinetiViewModel> GetKabineti1()
         {
-            return db.Kabineti1;
+            return db.Kabineti1.Select(_ => new KabinetiViewModel
+            {
+                kabineta_id = _.kabineta_id,
+                atrasanas_vieta = _.atrasanas_vieta,
+                kabineta_nummurs = _.kabineta_nummurs,
+                skolotajs_id = _.skolotajs_id
+            });
         }
 
         // GET: api/Kabineti/5
-        [ResponseType(typeof(Kabineti1))]
+        [ResponseType(typeof(KabinetiViewModel))]
         public IHttpActionResult GetKabineti1(int id)
         {
             Kabineti1 kabineti1 = db.Kabineti1.Find(id);
@@ -32,12 +39,18 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(kabineti1);
+            return Ok(new KabinetiViewModel
+            {
+                kabineta_id = kabineti1.kabineta_id,
+                atrasanas_vieta = kabineti1.atrasanas_vieta,
+                kabineta_nummurs = kabineti1.kabineta_nummurs,
+                skolotajs_id = kabineti1.skolotajs_id
+            });
         }
 
         // PUT: api/Kabineti/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKabineti1(int id, Kabineti1 kabineti1)
+        public IHttpActionResult PutKabineti1(int id, KabinetiViewModel kabineti1)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +62,17 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return BadRequest();
             }
 
-            db.Entry(kabineti1).State = EntityState.Modified;
+            var entry = db.Kabineti1.FirstOrDefault(_ => _.kabineta_id == kabineti1.kabineta_id);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            entry.kabineta_nummurs = kabineti1.kabineta_nummurs;
+            entry.skolotajs_id = kabineti1.skolotajs_id;
+            entry.atrasanas_vieta = kabineti1.atrasanas_vieta;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +94,21 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/Kabineti
-        [ResponseType(typeof(Kabineti1))]
-        public IHttpActionResult PostKabineti1(Kabineti1 kabineti1)
+        [ResponseType(typeof(KabinetiViewModel))]
+        public IHttpActionResult PostKabineti1(KabinetiViewModel kabineti1)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Kabineti1.Add(kabineti1);
+            db.Kabineti1.Add(new Kabineti1
+            {
+                kabineta_nummurs = kabineti1.kabineta_nummurs,
+                kabineta_id = kabineti1.kabineta_id,
+                skolotajs_id = kabineti1.skolotajs_id,
+                atrasanas_vieta = kabineti1.atrasanas_vieta
+            });
 
             try
             {
@@ -101,7 +130,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // DELETE: api/Kabineti/5
-        [ResponseType(typeof(Kabineti1))]
+        [ResponseType(typeof(KabinetiViewModel))]
         public IHttpActionResult DeleteKabineti1(int id)
         {
             Kabineti1 kabineti1 = db.Kabineti1.Find(id);
@@ -113,7 +142,13 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Kabineti1.Remove(kabineti1);
             db.SaveChanges();
 
-            return Ok(kabineti1);
+            return Ok(new KabinetiViewModel
+            {
+                kabineta_id = kabineti1.kabineta_id,
+                atrasanas_vieta = kabineti1.atrasanas_vieta,
+                skolotajs_id = kabineti1.skolotajs_id,
+                kabineta_nummurs = kabineti1.kabineta_nummurs
+            });
         }
 
         protected override void Dispose(bool disposing)

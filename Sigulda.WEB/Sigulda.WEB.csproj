@@ -193,13 +193,9 @@
     <Compile Include="Contexts\deadpool\Kabineti1.cs" />
     <Compile Include="Contexts\deadpool\Lietotaji1.cs" />
     <Compile Include="Contexts\iron-man\Atbildīgais.cs" />
-    <Compile Include="Contexts\iron-man\iekarta.cs" />
     <Compile Include="Contexts\iron-man\IronMan.cs" />
     <Compile Include="Contexts\iron-man\Kabinet.cs" />
     <Compile Include="Contexts\iron-man\Objekt.cs" />
-    <Compile Include="Contexts\iron-man\Piederumi.cs" />
-    <Compile Include="Contexts\iron-man\Reagenti.cs" />
-    <Compile Include="Contexts\iron-man\Trauki.cs" />
     <Compile Include="Contexts\wolverine\Klienti.cs" />
     <Compile Include="Contexts\wolverine\Laiva.cs" />
     <Compile Include="Contexts\wolverine\Laivu_veidi.cs" />
@@ -213,21 +209,22 @@
     <Compile Include="Controllers\avengers\MacibuMaterialiController.cs" />
     <Compile Include="Controllers\avengers\PrieksmetiController.cs" />
     <Compile Include="Controllers\avengers\ReaktivasVielasController.cs" />
-    <Compile Include="Controllers\avengers\TraukiController.cs" />
+    <Compile Include="Controllers\avengers\Trauki2Controller.cs" />
     <Compile Include="Controllers\deadpool\InventaraTipiController.cs" />
     <Compile Include="Controllers\deadpool\KabinetaInventarsController.cs" />
     <Compile Include="Controllers\deadpool\KabinetiController.cs" />
     <Compile Include="Controllers\deadpool\LietotajiController.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\InventaraTipiViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\KabinetaInventarsViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\KabinetiViewModel.cs" />
+    <Compile Include="Controllers\deadpool\ViewModels\LietotajsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iron-man\AtbildīgaisController.cs" />
-    <Compile Include="Controllers\iron-man\Iekartas2Controller.cs" />
     <Compile Include="Controllers\iron-man\KabinetsController.cs" />
     <Compile Include="Controllers\iron-man\ObjektsController.cs" />
-    <Compile Include="Controllers\iron-man\PiederumisController.cs" />
-    <Compile Include="Controllers\iron-man\ReagentiController.cs" />
-    <Compile Include="Controllers\iron-man\TraukiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\wolverine\KlientiController.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\KlientiViewModel.cs" />
     <Compile Include="Controllers\wolverine\LaivaController.cs" />
     <Compile Include="Controllers\wolverine\LaivuVeidiController.cs" />
     <Compile Include="Controllers\wolverine\PasutijumiController.cs" />
@@ -235,6 +232,13 @@
     <Compile Include="Controllers\wolverine\PiekabesVeidsController.cs" />
     <Compile Include="Controllers\wolverine\SoferiController.cs" />
     <Compile Include="Controllers\wolverine\TransportlidzekliController.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\LaivaViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\LaivuVeidiViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\PasutijumiViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\PiekabesVeidsViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\PiekabeViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\SoferiViewModel.cs" />
+    <Compile Include="Controllers\wolverine\ViewModels\TransportlidzekliViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

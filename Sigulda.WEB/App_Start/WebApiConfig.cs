@@ -41,7 +41,7 @@ namespace Sigulda.WEB
             config.Routes.MapHttpRoute(
                 name: "AvengersApi-Trauki",
                 routeTemplate: "api/avengers/trauki/{id}",
-                defaults: new { controller = "Trauki", id = RouteParameter.Optional }
+                defaults: new { controller = "Trauki2", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

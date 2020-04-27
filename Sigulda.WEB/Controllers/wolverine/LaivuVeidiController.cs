@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.wolverine;
+using Sigulda.WEB.Controllers.wolverine.ViewModels;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
@@ -17,13 +18,19 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/LaivuVeidi
-        public IQueryable<Laivu_veidi> GetLaivu_veidi()
+        public IQueryable<LaivuVeidiViewModel> GetLaivu_veidi()
         {
-            return db.Laivu_veidi;
+            return db.Laivu_veidi.Select(laivu_veidi => new LaivuVeidiViewModel
+            {
+                LVID = laivu_veidi.LVID,
+                Airi = laivu_veidi.Airi,
+                Cilv_ietilpiba = laivu_veidi.Cilv_ietilpiba,
+                Veida_nosaukums = laivu_veidi.Veida_nosaukums
+            });
         }
 
         // GET: api/LaivuVeidi/5
-        [ResponseType(typeof(Laivu_veidi))]
+        [ResponseType(typeof(LaivuVeidiViewModel))]
         public IHttpActionResult GetLaivu_veidi(int id)
         {
             Laivu_veidi laivu_veidi = db.Laivu_veidi.Find(id);
@@ -32,12 +39,18 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return NotFound();
             }
 
-            return Ok(laivu_veidi);
+            return Ok(new LaivuVeidiViewModel
+            {
+                LVID = laivu_veidi.LVID,
+                Airi = laivu_veidi.Airi,
+                Cilv_ietilpiba = laivu_veidi.Cilv_ietilpiba,
+                Veida_nosaukums = laivu_veidi.Veida_nosaukums
+            });
         }
 
         // PUT: api/LaivuVeidi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLaivu_veidi(int id, Laivu_veidi laivu_veidi)
+        public IHttpActionResult PutLaivu_veidi(int id, LaivuVeidiViewModel laivu_veidi)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +62,17 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return BadRequest();
             }
 
-            db.Entry(laivu_veidi).State = EntityState.Modified;
+            var entry = db.Laivu_veidi.FirstOrDefault(_ => _.LVID == laivu_veidi.LVID);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            entry.Veida_nosaukums = laivu_veidi.Veida_nosaukums;
+            entry.Cilv_ietilpiba = laivu_veidi.Cilv_ietilpiba;
+            entry.Airi = laivu_veidi.Airi;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +94,21 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/LaivuVeidi
-        [ResponseType(typeof(Laivu_veidi))]
-        public IHttpActionResult PostLaivu_veidi(Laivu_veidi laivu_veidi)
+        [ResponseType(typeof(LaivuVeidiViewModel))]
+        public IHttpActionResult PostLaivu_veidi(LaivuVeidiViewModel laivu_veidi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Laivu_veidi.Add(laivu_veidi);
+            db.Laivu_veidi.Add(new Laivu_veidi
+            {
+                LVID = laivu_veidi.LVID,
+                Airi = laivu_veidi.Airi,
+                Cilv_ietilpiba = laivu_veidi.Cilv_ietilpiba,
+                Veida_nosaukums = laivu_veidi.Veida_nosaukums
+            });
 
             try
             {
@@ -101,7 +130,7 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/LaivuVeidi/5
-        [ResponseType(typeof(Laivu_veidi))]
+        [ResponseType(typeof(LaivuVeidiViewModel))]
         public IHttpActionResult DeleteLaivu_veidi(int id)
         {
             Laivu_veidi laivu_veidi = db.Laivu_veidi.Find(id);
@@ -113,7 +142,13 @@ namespace Sigulda.WEB.Controllers.wolverine
             db.Laivu_veidi.Remove(laivu_veidi);
             db.SaveChanges();
 
-            return Ok(laivu_veidi);
+            return Ok(new LaivuVeidiViewModel
+            {
+                LVID = laivu_veidi.LVID,
+                Airi = laivu_veidi.Airi,
+                Cilv_ietilpiba = laivu_veidi.Cilv_ietilpiba,
+                Veida_nosaukums = laivu_veidi.Veida_nosaukums
+            });
         }
 
         protected override void Dispose(bool disposing)

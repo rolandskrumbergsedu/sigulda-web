@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,18 @@ namespace Sigulda.WEB.Controllers.deadpool
         private Deadpool db = new Deadpool();
 
         // GET: api/KabinetaInventars
-        public IQueryable<Kabineta_inventars2> GetKabineta_inventars2()
+        public IQueryable<KabinetaInventarsViewModel> GetKabineta_inventars2()
         {
-            return db.Kabineta_inventars2;
+            return db.Kabineta_inventars2.Select(_ => new KabinetaInventarsViewModel
+            {
+                inventara_kabineta_id = _.inventara_kabineta_id,
+                Kabineta_id = _.Kabineta_id,
+                tipa_kods = _.tipa_kods
+            });
         }
 
         // GET: api/KabinetaInventars/5
-        [ResponseType(typeof(Kabineta_inventars2))]
+        [ResponseType(typeof(KabinetaInventarsViewModel))]
         public IHttpActionResult GetKabineta_inventars2(int id)
         {
             Kabineta_inventars2 kabineta_inventars2 = db.Kabineta_inventars2.Find(id);
@@ -32,12 +38,17 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(kabineta_inventars2);
+            return Ok(new KabinetaInventarsViewModel
+            {
+                inventara_kabineta_id = kabineta_inventars2.inventara_kabineta_id,
+                Kabineta_id = kabineta_inventars2.Kabineta_id,
+                tipa_kods = kabineta_inventars2.tipa_kods
+            });
         }
 
         // PUT: api/KabinetaInventars/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKabineta_inventars2(int id, Kabineta_inventars2 kabineta_inventars2)
+        public IHttpActionResult PutKabineta_inventars2(int id, KabinetaInventarsViewModel kabineta_inventars2)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +60,16 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return BadRequest();
             }
 
-            db.Entry(kabineta_inventars2).State = EntityState.Modified;
+            var entry = db.Kabineta_inventars2.FirstOrDefault(_ => _.inventara_kabineta_id == kabineta_inventars2.inventara_kabineta_id);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            entry.Kabineta_id = kabineta_inventars2.Kabineta_id;
+            entry.tipa_kods = kabineta_inventars2.tipa_kods;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +91,21 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/KabinetaInventars
-        [ResponseType(typeof(Kabineta_inventars2))]
-        public IHttpActionResult PostKabineta_inventars2(Kabineta_inventars2 kabineta_inventars2)
+        [ResponseType(typeof(KabinetaInventarsViewModel))]
+        public IHttpActionResult PostKabineta_inventars2(KabinetaInventarsViewModel kabineta_inventars2)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Kabineta_inventars2.Add(kabineta_inventars2);
+            var entry = new Kabineta_inventars2
+            {
+                inventara_kabineta_id = kabineta_inventars2.inventara_kabineta_id,
+                Kabineta_id = kabineta_inventars2.Kabineta_id,
+                tipa_kods = kabineta_inventars2.tipa_kods
+            };
+            db.Kabineta_inventars2.Add(entry);
 
             try
             {
@@ -101,7 +127,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // DELETE: api/KabinetaInventars/5
-        [ResponseType(typeof(Kabineta_inventars2))]
+        [ResponseType(typeof(KabinetaInventarsViewModel))]
         public IHttpActionResult DeleteKabineta_inventars2(int id)
         {
             Kabineta_inventars2 kabineta_inventars2 = db.Kabineta_inventars2.Find(id);
@@ -113,7 +139,12 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.Kabineta_inventars2.Remove(kabineta_inventars2);
             db.SaveChanges();
 
-            return Ok(kabineta_inventars2);
+            return Ok(new KabinetaInventarsViewModel
+            {
+                inventara_kabineta_id = kabineta_inventars2.inventara_kabineta_id,
+                Kabineta_id = kabineta_inventars2.Kabineta_id,
+                tipa_kods = kabineta_inventars2.tipa_kods
+            });
         }
 
         protected override void Dispose(bool disposing)

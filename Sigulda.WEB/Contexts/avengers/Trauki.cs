@@ -1,5 +1,6 @@
 namespace Sigulda.WEB.Contexts.avengers
 {
+    using Sigulda.WEB.Areas.HelpPage.ModelDescriptions;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,7 @@ namespace Sigulda.WEB.Contexts.avengers
     using System.Data.Entity.Spatial;
 
     [Table("Trauki")]
+    [ModelName("AvengersTrauki")]
     public partial class Trauki
     {
         [Key]

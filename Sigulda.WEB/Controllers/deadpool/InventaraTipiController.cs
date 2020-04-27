@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.deadpool;
+using Sigulda.WEB.Controllers.deadpool.ViewModels;
 
 namespace Sigulda.WEB.Controllers.deadpool
 {
@@ -17,13 +18,18 @@ namespace Sigulda.WEB.Controllers.deadpool
         private Deadpool db = new Deadpool();
 
         // GET: api/InventaraTipi
-        public IQueryable<inventara_tipi2> Getinventara_tipi2()
+        public IQueryable<InventaraTipiViewModel> Getinventara_tipi2()
         {
-            return db.inventara_tipi2;
+            return db.inventara_tipi2.Select(_ => new InventaraTipiViewModel 
+            { 
+                tipa_id = _.tipa_id,
+                Apraksts = _.Apraksts,
+                nosaukums = _.nosaukums
+            });
         }
 
         // GET: api/InventaraTipi/5
-        [ResponseType(typeof(inventara_tipi2))]
+        [ResponseType(typeof(InventaraTipiViewModel))]
         public IHttpActionResult Getinventara_tipi2(string id)
         {
             inventara_tipi2 inventara_tipi2 = db.inventara_tipi2.Find(id);
@@ -32,12 +38,17 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return NotFound();
             }
 
-            return Ok(inventara_tipi2);
+            return Ok(new InventaraTipiViewModel
+            {
+                tipa_id = inventara_tipi2.tipa_id,
+                Apraksts = inventara_tipi2.Apraksts,
+                nosaukums = inventara_tipi2.nosaukums
+            });
         }
 
         // PUT: api/InventaraTipi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putinventara_tipi2(string id, inventara_tipi2 inventara_tipi2)
+        public IHttpActionResult Putinventara_tipi2(string id, InventaraTipiViewModel inventara_tipi2)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +60,16 @@ namespace Sigulda.WEB.Controllers.deadpool
                 return BadRequest();
             }
 
-            db.Entry(inventara_tipi2).State = EntityState.Modified;
+            var entry = db.inventara_tipi2.FirstOrDefault(_ => _.tipa_id == inventara_tipi2.tipa_id);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            entry.nosaukums = inventara_tipi2.nosaukums;
+            entry.Apraksts = inventara_tipi2.Apraksts;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +91,22 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // POST: api/InventaraTipi
-        [ResponseType(typeof(inventara_tipi2))]
-        public IHttpActionResult Postinventara_tipi2(inventara_tipi2 inventara_tipi2)
+        [ResponseType(typeof(InventaraTipiViewModel))]
+        public IHttpActionResult Postinventara_tipi2(InventaraTipiViewModel inventara_tipi2)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.inventara_tipi2.Add(inventara_tipi2);
+            var entry = new inventara_tipi2
+            {
+                tipa_id = inventara_tipi2.tipa_id,
+                Apraksts = inventara_tipi2.Apraksts,
+                nosaukums = inventara_tipi2.nosaukums
+            };
+
+            db.inventara_tipi2.Add(entry);
 
             try
             {
@@ -101,7 +128,7 @@ namespace Sigulda.WEB.Controllers.deadpool
         }
 
         // DELETE: api/InventaraTipi/5
-        [ResponseType(typeof(inventara_tipi2))]
+        [ResponseType(typeof(InventaraTipiViewModel))]
         public IHttpActionResult Deleteinventara_tipi2(string id)
         {
             inventara_tipi2 inventara_tipi2 = db.inventara_tipi2.Find(id);
@@ -113,7 +140,12 @@ namespace Sigulda.WEB.Controllers.deadpool
             db.inventara_tipi2.Remove(inventara_tipi2);
             db.SaveChanges();
 
-            return Ok(inventara_tipi2);
+            return Ok(new InventaraTipiViewModel
+            {
+                tipa_id = inventara_tipi2.tipa_id,
+                Apraksts = inventara_tipi2.Apraksts,
+                nosaukums = inventara_tipi2.nosaukums
+            });
         }
 
         protected override void Dispose(bool disposing)

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.wolverine;
+using Sigulda.WEB.Controllers.wolverine.ViewModels;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
@@ -17,13 +18,18 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/Piekabes
-        public IQueryable<Piekabe> GetPiekabes()
+        public IQueryable<PiekabeViewModel> GetPiekabes()
         {
-            return db.Piekabes;
+            return db.Piekabes.Select(piekabe => new PiekabeViewModel
+            {
+                PiekabesID = piekabe.PiekabesID,
+                Nosaukums = piekabe.Nosaukums,
+                Veids = piekabe.Veids
+            });
         }
 
         // GET: api/Piekabes/5
-        [ResponseType(typeof(Piekabe))]
+        [ResponseType(typeof(PiekabeViewModel))]
         public IHttpActionResult GetPiekabe(int id)
         {
             Piekabe piekabe = db.Piekabes.Find(id);
@@ -32,12 +38,17 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return NotFound();
             }
 
-            return Ok(piekabe);
+            return Ok(new PiekabeViewModel
+            {
+                PiekabesID = piekabe.PiekabesID,
+                Nosaukums = piekabe.Nosaukums,
+                Veids = piekabe.Veids
+            });
         }
 
         // PUT: api/Piekabes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPiekabe(int id, Piekabe piekabe)
+        public IHttpActionResult PutPiekabe(int id, PiekabeViewModel piekabe)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +60,11 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return BadRequest();
             }
 
-            db.Entry(piekabe).State = EntityState.Modified;
+            var entry = db.Piekabes.FirstOrDefault(_ => _.PiekabesID == piekabe.PiekabesID);
+            entry.Nosaukums = piekabe.Nosaukums;
+            entry.Veids = piekabe.Veids;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +86,20 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/Piekabes
-        [ResponseType(typeof(Piekabe))]
-        public IHttpActionResult PostPiekabe(Piekabe piekabe)
+        [ResponseType(typeof(PiekabeViewModel))]
+        public IHttpActionResult PostPiekabe(PiekabeViewModel piekabe)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Piekabes.Add(piekabe);
+            db.Piekabes.Add(new Piekabe
+            {
+                PiekabesID = piekabe.PiekabesID,
+                Nosaukums = piekabe.Nosaukums,
+                Veids = piekabe.Veids
+            });
 
             try
             {
@@ -101,7 +121,7 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/Piekabes/5
-        [ResponseType(typeof(Piekabe))]
+        [ResponseType(typeof(PiekabeViewModel))]
         public IHttpActionResult DeletePiekabe(int id)
         {
             Piekabe piekabe = db.Piekabes.Find(id);
@@ -113,7 +133,12 @@ namespace Sigulda.WEB.Controllers.wolverine
             db.Piekabes.Remove(piekabe);
             db.SaveChanges();
 
-            return Ok(piekabe);
+            return Ok(new PiekabeViewModel
+            {
+                PiekabesID = piekabe.PiekabesID,
+                Nosaukums = piekabe.Nosaukums,
+                Veids = piekabe.Veids
+            });
         }
 
         protected override void Dispose(bool disposing)

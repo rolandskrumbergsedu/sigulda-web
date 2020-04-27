@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.wolverine;
+using Sigulda.WEB.Controllers.wolverine.ViewModels;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
@@ -17,13 +18,25 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/Transportlidzekli
-        public IQueryable<Transportlidzekli> GetTransportlidzeklis()
+        public IQueryable<TransportlidzekliViewModel> GetTransportlidzeklis()
         {
-            return db.Transportlidzeklis;
+            return db.Transportlidzeklis.Select(transportlidzekli => new TransportlidzekliViewModel
+            {
+                Gads = transportlidzekli.Gads,
+                Ipasnieks = transportlidzekli.Ipasnieks,
+                Marka = transportlidzekli.Marka,
+                Max_airu_ietilpiba = transportlidzekli.Max_airu_ietilpiba,
+                Max_cilv_ietilpiba = transportlidzekli.Max_cilv_ietilpiba,
+                Max_vestu_ietilpiba = transportlidzekli.Max_vestu_ietilpiba,
+                Modelis = transportlidzekli.Modelis,
+                Numurzime = transportlidzekli.Numurzime,
+                PIekabe = transportlidzekli.PIekabe,
+                TransportaID = transportlidzekli.TransportaID
+            });
         }
 
         // GET: api/Transportlidzekli/5
-        [ResponseType(typeof(Transportlidzekli))]
+        [ResponseType(typeof(TransportlidzekliViewModel))]
         public IHttpActionResult GetTransportlidzekli(int id)
         {
             Transportlidzekli transportlidzekli = db.Transportlidzeklis.Find(id);
@@ -32,12 +45,24 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return NotFound();
             }
 
-            return Ok(transportlidzekli);
+            return Ok(new TransportlidzekliViewModel
+            {
+                Gads = transportlidzekli.Gads,
+                Ipasnieks = transportlidzekli.Ipasnieks,
+                Marka = transportlidzekli.Marka,
+                Max_airu_ietilpiba = transportlidzekli.Max_airu_ietilpiba,
+                Max_cilv_ietilpiba = transportlidzekli.Max_cilv_ietilpiba,
+                Max_vestu_ietilpiba = transportlidzekli.Max_vestu_ietilpiba,
+                Modelis = transportlidzekli.Modelis,
+                Numurzime = transportlidzekli.Numurzime,
+                PIekabe = transportlidzekli.PIekabe,
+                TransportaID = transportlidzekli.TransportaID
+            });
         }
 
         // PUT: api/Transportlidzekli/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTransportlidzekli(int id, Transportlidzekli transportlidzekli)
+        public IHttpActionResult PutTransportlidzekli(int id, TransportlidzekliViewModel transportlidzekli)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +74,22 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return BadRequest();
             }
 
-            db.Entry(transportlidzekli).State = EntityState.Modified;
+            var entry = db.Transportlidzeklis.FirstOrDefault(_ => _.TransportaID == transportlidzekli.TransportaID);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+            entry.Ipasnieks = transportlidzekli.Ipasnieks;
+            entry.Marka = transportlidzekli.Marka;
+            entry.Modelis = transportlidzekli.Modelis;
+            entry.Gads = transportlidzekli.Gads;
+            entry.Max_cilv_ietilpiba = transportlidzekli.Max_cilv_ietilpiba;
+            entry.Max_airu_ietilpiba = transportlidzekli.Max_airu_ietilpiba;
+            entry.Max_vestu_ietilpiba = transportlidzekli.Max_vestu_ietilpiba;
+            entry.PIekabe = transportlidzekli.PIekabe;
+            entry.Numurzime = transportlidzekli.Numurzime;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +111,27 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/Transportlidzekli
-        [ResponseType(typeof(Transportlidzekli))]
-        public IHttpActionResult PostTransportlidzekli(Transportlidzekli transportlidzekli)
+        [ResponseType(typeof(TransportlidzekliViewModel))]
+        public IHttpActionResult PostTransportlidzekli(TransportlidzekliViewModel transportlidzekli)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Transportlidzeklis.Add(transportlidzekli);
+            db.Transportlidzeklis.Add(new Transportlidzekli
+            {
+                Ipasnieks = transportlidzekli.Ipasnieks,
+                Marka = transportlidzekli.Marka,
+                Modelis = transportlidzekli.Modelis,
+                Gads = transportlidzekli.Gads,
+                Max_cilv_ietilpiba = transportlidzekli.Max_cilv_ietilpiba,
+                Max_airu_ietilpiba = transportlidzekli.Max_airu_ietilpiba,
+                Max_vestu_ietilpiba = transportlidzekli.Max_vestu_ietilpiba,
+                PIekabe = transportlidzekli.PIekabe,
+                Numurzime = transportlidzekli.Numurzime,
+                TransportaID = transportlidzekli.TransportaID
+        });
 
             try
             {
@@ -101,7 +153,7 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/Transportlidzekli/5
-        [ResponseType(typeof(Transportlidzekli))]
+        [ResponseType(typeof(TransportlidzekliViewModel))]
         public IHttpActionResult DeleteTransportlidzekli(int id)
         {
             Transportlidzekli transportlidzekli = db.Transportlidzeklis.Find(id);
@@ -113,7 +165,19 @@ namespace Sigulda.WEB.Controllers.wolverine
             db.Transportlidzeklis.Remove(transportlidzekli);
             db.SaveChanges();
 
-            return Ok(transportlidzekli);
+            return Ok(new TransportlidzekliViewModel
+            {
+                Gads = transportlidzekli.Gads,
+                Ipasnieks = transportlidzekli.Ipasnieks,
+                Marka = transportlidzekli.Marka,
+                Max_airu_ietilpiba = transportlidzekli.Max_airu_ietilpiba,
+                Max_cilv_ietilpiba = transportlidzekli.Max_cilv_ietilpiba,
+                Max_vestu_ietilpiba = transportlidzekli.Max_vestu_ietilpiba,
+                Modelis = transportlidzekli.Modelis,
+                Numurzime = transportlidzekli.Numurzime,
+                PIekabe = transportlidzekli.PIekabe,
+                TransportaID = transportlidzekli.TransportaID
+            });
         }
 
         protected override void Dispose(bool disposing)

@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Sigulda.WEB.Contexts.iron_man;
+using Sigulda.WEB.Contexts.avengers;
 
-namespace Sigulda.WEB.Controllers.iron_man
+namespace Sigulda.WEB.Controllers.avengers
 {
-    public class TraukiController : ApiController
+    public class Trauki2Controller : ApiController
     {
-        private IronMan db = new IronMan();
+        private AvengersModel db = new AvengersModel();
 
         // GET: api/Trauki
         public IQueryable<Trauki> GetTraukis()
@@ -44,7 +44,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 return BadRequest(ModelState);
             }
 
-            if (id != trauki.Trauki_ID)
+            if (id != trauki.TraukaID)
             {
                 return BadRequest();
             }
@@ -87,7 +87,7 @@ namespace Sigulda.WEB.Controllers.iron_man
             }
             catch (DbUpdateException)
             {
-                if (TraukiExists(trauki.Trauki_ID))
+                if (TraukiExists(trauki.TraukaID))
                 {
                     return Conflict();
                 }
@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.iron_man
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = trauki.Trauki_ID }, trauki);
+            return CreatedAtRoute("AvengersApi-Trauki", new { id = trauki.TraukaID }, trauki);
         }
 
         // DELETE: api/Trauki/5
@@ -127,7 +127,7 @@ namespace Sigulda.WEB.Controllers.iron_man
 
         private bool TraukiExists(int id)
         {
-            return db.Traukis.Count(e => e.Trauki_ID == id) > 0;
+            return db.Traukis.Count(e => e.TraukaID == id) > 0;
         }
     }
 }

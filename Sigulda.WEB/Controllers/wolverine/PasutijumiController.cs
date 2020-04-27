@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Sigulda.WEB.Contexts.wolverine;
+using Sigulda.WEB.Controllers.wolverine.ViewModels;
 
 namespace Sigulda.WEB.Controllers.wolverine
 {
@@ -17,13 +18,22 @@ namespace Sigulda.WEB.Controllers.wolverine
         private WolverineModel db = new WolverineModel();
 
         // GET: api/Pasutijumi
-        public IQueryable<Pasutijumi> GetPasutijumis()
+        public IQueryable<PasutijumiViewModel> GetPasutijumis()
         {
-            return db.Pasutijumis;
+            return db.Pasutijumis.Select(pasutijumi => new PasutijumiViewModel
+            {
+                Pas_ID = pasutijumi.Pas_ID,
+                Klients = pasutijumi.Klients,
+                Laivu_daudzums = pasutijumi.Laivu_daudzums,
+                Laivu_veids = pasutijumi.Laivu_veids,
+                Ires_beigas = pasutijumi.Ires_beigas,
+                Ires_sakums = pasutijumi.Ires_sakums,
+                Soferis = pasutijumi.Soferis
+            });
         }
 
         // GET: api/Pasutijumi/5
-        [ResponseType(typeof(Pasutijumi))]
+        [ResponseType(typeof(PasutijumiViewModel))]
         public IHttpActionResult GetPasutijumi(int id)
         {
             Pasutijumi pasutijumi = db.Pasutijumis.Find(id);
@@ -32,12 +42,21 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return NotFound();
             }
 
-            return Ok(pasutijumi);
+            return Ok(new PasutijumiViewModel
+            {
+                Pas_ID = pasutijumi.Pas_ID,
+                Klients = pasutijumi.Klients,
+                Laivu_daudzums = pasutijumi.Laivu_daudzums,
+                Laivu_veids = pasutijumi.Laivu_veids,
+                Ires_beigas = pasutijumi.Ires_beigas,
+                Ires_sakums = pasutijumi.Ires_sakums,
+                Soferis = pasutijumi.Soferis
+            });
         }
 
         // PUT: api/Pasutijumi/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPasutijumi(int id, Pasutijumi pasutijumi)
+        public IHttpActionResult PutPasutijumi(int id, PasutijumiViewModel pasutijumi)
         {
             if (!ModelState.IsValid)
             {
@@ -49,7 +68,19 @@ namespace Sigulda.WEB.Controllers.wolverine
                 return BadRequest();
             }
 
-            db.Entry(pasutijumi).State = EntityState.Modified;
+            var entry = db.Pasutijumis.FirstOrDefault(_ => _.Pas_ID == pasutijumi.Pas_ID);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+            entry.Klients = pasutijumi.Klients;
+            entry.Laivu_veids = pasutijumi.Laivu_veids;
+            entry.Laivu_daudzums = pasutijumi.Laivu_daudzums;
+            entry.Soferis = pasutijumi.Soferis;
+            entry.Ires_beigas = pasutijumi.Ires_beigas;
+            entry.Ires_sakums = pasutijumi.Ires_sakums;
+
+            db.Entry(entry).State = EntityState.Modified;
 
             try
             {
@@ -71,15 +102,24 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // POST: api/Pasutijumi
-        [ResponseType(typeof(Pasutijumi))]
-        public IHttpActionResult PostPasutijumi(Pasutijumi pasutijumi)
+        [ResponseType(typeof(PasutijumiViewModel))]
+        public IHttpActionResult PostPasutijumi(PasutijumiViewModel pasutijumi)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Pasutijumis.Add(pasutijumi);
+            db.Pasutijumis.Add(new Pasutijumi
+            {
+                Klients = pasutijumi.Klients,
+                Laivu_veids = pasutijumi.Laivu_veids,
+                Laivu_daudzums = pasutijumi.Laivu_daudzums,
+                Soferis = pasutijumi.Soferis,
+                Ires_beigas = pasutijumi.Ires_beigas,
+                Ires_sakums = pasutijumi.Ires_sakums,
+                Pas_ID = pasutijumi.Pas_ID
+        });
 
             try
             {
@@ -101,7 +141,7 @@ namespace Sigulda.WEB.Controllers.wolverine
         }
 
         // DELETE: api/Pasutijumi/5
-        [ResponseType(typeof(Pasutijumi))]
+        [ResponseType(typeof(PasutijumiViewModel))]
         public IHttpActionResult DeletePasutijumi(int id)
         {
             Pasutijumi pasutijumi = db.Pasutijumis.Find(id);
@@ -113,7 +153,16 @@ namespace Sigulda.WEB.Controllers.wolverine
             db.Pasutijumis.Remove(pasutijumi);
             db.SaveChanges();
 
-            return Ok(pasutijumi);
+            return Ok(new PasutijumiViewModel
+            {
+                Pas_ID = pasutijumi.Pas_ID,
+                Klients = pasutijumi.Klients,
+                Laivu_daudzums = pasutijumi.Laivu_daudzums,
+                Laivu_veids = pasutijumi.Laivu_veids,
+                Ires_beigas = pasutijumi.Ires_beigas,
+                Ires_sakums = pasutijumi.Ires_sakums,
+                Soferis = pasutijumi.Soferis
+            });
         }
 
         protected override void Dispose(bool disposing)
