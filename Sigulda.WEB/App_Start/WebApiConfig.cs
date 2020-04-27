@@ -33,99 +33,15 @@ namespace Sigulda.WEB
             );
 
             config.Routes.MapHttpRoute(
-                name: "BatmanApi-ReaktivasVielas",
-                routeTemplate: "api/batman/reaktivas-vielas/{id}",
+                name: "AvengersApi-ReaktivasVielas",
+                routeTemplate: "api/avengers/reaktivas-vielas/{id}",
                 defaults: new { controller = "ReaktivasVielas", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "BatmanApi-Trauki",
-                routeTemplate: "api/batman/trauki/{id}",
+                name: "AvengersApi-Trauki",
+                routeTemplate: "api/avengers/trauki/{id}",
                 defaults: new { controller = "Trauki", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-               name: "BatmanApi-Akumulators",
-               routeTemplate: "api/batman/akumulators/{id}",
-               defaults: new { controller = "Akumulators", id = RouteParameter.Optional }
-           );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-Baterija",
-                routeTemplate: "api/batman/baterija/{id}",
-                defaults: new { controller = "Baterijas", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-ElektromehaniskaKomponente",
-                routeTemplate: "api/batman/elektromehaniska-komponente/{id}",
-                defaults: new { controller = "ElektromehaniskaKomponentes", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-EnergijasKomponente",
-                routeTemplate: "api/batman/energijas-komponente/{id}",
-                defaults: new { controller = "EnergijasKomponentes", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-GatavaShemaModulis",
-                routeTemplate: "api/batman/gatava-shema-modulis/{id}",
-                defaults: new { controller = "GatavaShemaModulis", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-Komponente",
-                routeTemplate: "api/batman/komponente/{id}",
-                defaults: new { controller = "Komponente", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-Komponentes",
-                routeTemplate: "api/batman/komponentes/{id}",
-                defaults: new { controller = "Komponentes", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-Sensors",
-                routeTemplate: "api/batman/sensors/{id}",
-                defaults: new { controller = "Sensors", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-PasivaKomponente",
-                routeTemplate: "api/batman/pasiva-komponente/{id}",
-                defaults: new { controller = "PasivaKomponentes", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BatmanApi-VadisController",
-                routeTemplate: "api/batman/vadi/{id}",
-                defaults: new { controller = "Vadis", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CaptainAmericaApi-KlasesController",
-                routeTemplate: "api/captain-america/klases/{id}",
-                defaults: new { controller = "Klases", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CaptainAmericaApi-MacibuPrieksmetsController",
-                routeTemplate: "api/captain-america/macibu-prieksmets/{id}",
-                defaults: new { controller = "MacibuPrieksmets", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CaptainAmericaApi-MacibuStundaController",
-                routeTemplate: "api/captain-america/macibu-stunda/{id}",
-                defaults: new { controller = "MacibuStunda", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CaptainAmericaApi-StundasTemasController",
-                routeTemplate: "api/captain-america/stundas-tema/{id}",
-                defaults: new { controller = "StundasTemas", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

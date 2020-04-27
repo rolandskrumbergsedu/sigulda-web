@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("BatmanApi-Trauki", new { id = trauki.TraukaID }, trauki);
+            return CreatedAtRoute("AvengersApi-Trauki", new { id = trauki.TraukaID }, trauki);
         }
 
         // DELETE: api/Trauki/5

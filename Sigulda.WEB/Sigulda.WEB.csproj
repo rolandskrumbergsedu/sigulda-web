@@ -187,23 +187,6 @@
     <Compile Include="Contexts\avengers\Prieksmeti.cs" />
     <Compile Include="Contexts\avengers\Reaktivas_Viela.cs" />
     <Compile Include="Contexts\avengers\Trauki.cs" />
-    <Compile Include="Contexts\batman\AktivaKomponente.cs" />
-    <Compile Include="Contexts\batman\Akumulators.cs" />
-    <Compile Include="Contexts\batman\Baterija.cs" />
-    <Compile Include="Contexts\batman\BatmanModel.cs" />
-    <Compile Include="Contexts\batman\ElektromehaniskaKomponente.cs" />
-    <Compile Include="Contexts\batman\EnergijasKomponente.cs" />
-    <Compile Include="Contexts\batman\GatavaShemaModulis.cs" />
-    <Compile Include="Contexts\batman\Komponente.cs" />
-    <Compile Include="Contexts\batman\Komponentes.cs" />
-    <Compile Include="Contexts\batman\PasivaKomponente.cs" />
-    <Compile Include="Contexts\batman\Sensors.cs" />
-    <Compile Include="Contexts\batman\Vadi.cs" />
-    <Compile Include="Contexts\captain-america\CaptainAmericaModel.cs" />
-    <Compile Include="Contexts\captain-america\Klase.cs" />
-    <Compile Include="Contexts\captain-america\Macibu_prieksmets.cs" />
-    <Compile Include="Contexts\captain-america\Macibu_stunda.cs" />
-    <Compile Include="Contexts\captain-america\StundasTema.cs" />
     <Compile Include="Contexts\deadpool\Deadpool.cs" />
     <Compile Include="Contexts\deadpool\inventara_tipi2.cs" />
     <Compile Include="Contexts\deadpool\Kabineta_inventars2.cs" />
@@ -231,21 +214,6 @@
     <Compile Include="Controllers\avengers\PrieksmetiController.cs" />
     <Compile Include="Controllers\avengers\ReaktivasVielasController.cs" />
     <Compile Include="Controllers\avengers\TraukiController.cs" />
-    <Compile Include="Controllers\batman\AktivaKomponentesController.cs" />
-    <Compile Include="Controllers\batman\AkumulatorsController.cs" />
-    <Compile Include="Controllers\batman\BaterijasController.cs" />
-    <Compile Include="Controllers\batman\ElektromehaniskaKomponentesController.cs" />
-    <Compile Include="Controllers\batman\EnergijasKomponentesController.cs" />
-    <Compile Include="Controllers\batman\GatavaShemaModulisController.cs" />
-    <Compile Include="Controllers\batman\KomponenteController.cs" />
-    <Compile Include="Controllers\batman\KomponentesController.cs" />
-    <Compile Include="Controllers\batman\PasivaKomponentesController.cs" />
-    <Compile Include="Controllers\batman\SensorsController.cs" />
-    <Compile Include="Controllers\batman\VadisController.cs" />
-    <Compile Include="Controllers\captain-america\KlasesController.cs" />
-    <Compile Include="Controllers\captain-america\MacibuPrieksmetsController.cs" />
-    <Compile Include="Controllers\captain-america\MacibuStundaController.cs" />
-    <Compile Include="Controllers\captain-america\StundasTemasController.cs" />
     <Compile Include="Controllers\deadpool\InventaraTipiController.cs" />
     <Compile Include="Controllers\deadpool\KabinetaInventarsController.cs" />
     <Compile Include="Controllers\deadpool\KabinetiController.cs" />
@@ -328,7 +296,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Contexts\batman\" />
+    <Folder Include="Contexts\captain-america\" />
     <Folder Include="Contexts\spiderman\" />
+    <Folder Include="Controllers\batman\" />
+    <Folder Include="Controllers\captain-america\" />
     <Folder Include="Controllers\spiderman\" />
     <Folder Include="Models\" />
   </ItemGroup>

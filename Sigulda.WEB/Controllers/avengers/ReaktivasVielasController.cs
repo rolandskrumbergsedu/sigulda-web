@@ -97,7 +97,7 @@ namespace Sigulda.WEB.Controllers.avengers
                 }
             }
 
-            return CreatedAtRoute("BatmanApi-ReaktivasVielas", new { id = reaktivas_Viela.ReaktivasVielasID }, reaktivas_Viela);
+            return CreatedAtRoute("AvengersApi-ReaktivasVielas", new { id = reaktivas_Viela.ReaktivasVielasID }, reaktivas_Viela);
         }
 
         // DELETE: api/ReaktivasVielas/5
